@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DTech Repair — Any Gadget Problem? Ipa-Fix mo na!</title>
+    <title>DTech Solutions — Any Gadget Problem? Ipa-Fix mo na!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,6 @@
         margin: 0;
         padding: 0;
       }
-
       :root {
         --black: #000000;
         --dark: #0a0a0a;
@@ -34,18 +33,15 @@
         --border: rgba(255, 255, 255, 0.07);
         --oborder: rgba(255, 106, 0, 0.3);
       }
-
       html {
         scroll-behavior: smooth;
       }
-
       body {
         font-family: "Poppins", sans-serif;
         background: var(--black);
         color: var(--white);
         overflow-x: hidden;
       }
-
       ::-webkit-scrollbar {
         width: 4px;
       }
@@ -56,7 +52,6 @@
         background: var(--orange);
         border-radius: 4px;
       }
-
       img {
         display: block;
       }
@@ -64,7 +59,6 @@
         text-decoration: none;
         color: inherit;
       }
-
       /* ──────────────────────────────
        NAVBAR
     ────────────────────────────── */
@@ -162,7 +156,6 @@
         border-radius: 2px;
         display: block;
       }
-
       /* ──────────────────────────────
        TICKER
     ────────────────────────────── */
@@ -210,7 +203,6 @@
         border-radius: 50%;
         background: var(--orange);
       }
-
       /* ──────────────────────────────
        HERO
     ────────────────────────────── */
@@ -223,8 +215,6 @@
         margin: 0 auto;
         padding: 80px 40px;
         gap: 60px;
-      }
-      .hero-left {
       }
       .hero-badge {
         display: inline-flex;
@@ -259,7 +249,6 @@
           transform: scale(0.8);
         }
       }
-
       .hero-h1 {
         font-size: clamp(2.4rem, 4.5vw, 3.8rem);
         font-weight: 900;
@@ -329,7 +318,6 @@
         background: rgba(255, 106, 0, 0.08);
         border-color: var(--orange);
       }
-
       /* mini stats */
       .hero-stats {
         display: flex;
@@ -358,7 +346,6 @@
         color: var(--muted);
         margin-top: 4px;
       }
-
       /* hero right – phone mockup */
       .hero-right {
         display: flex;
@@ -399,7 +386,6 @@
           transform: translateY(-14px);
         }
       }
-
       /* floating chips */
       .chip {
         position: absolute;
@@ -443,7 +429,6 @@
         left: -70px;
         animation: float 4s ease-in-out infinite 2s;
       }
-
       /* ──────────────────────────────
        SERVICES STRIP
     ────────────────────────────── */
@@ -495,10 +480,9 @@
         color: var(--gray);
         margin-top: 10px;
       }
-
       .services-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 2px;
         padding-bottom: 80px;
       }
@@ -508,14 +492,13 @@
         overflow: hidden;
         position: relative;
         transition: background 0.3s;
-        cursor: pointer;
       }
       .svc-card:hover {
         background: #1c1c1c;
       }
       .svc-card-img {
         position: relative;
-        height: 220px;
+        height: 190px;
         overflow: hidden;
       }
       .svc-card-img img {
@@ -558,10 +541,10 @@
         font-size: 2rem;
       }
       .svc-body {
-        padding: 28px 24px 32px;
+        padding: 26px 22px 30px;
       }
       .svc-name {
-        font-size: 1.2rem;
+        font-size: 1.12rem;
         font-weight: 800;
         letter-spacing: -0.3px;
         margin-bottom: 18px;
@@ -576,7 +559,7 @@
         display: flex;
         align-items: flex-start;
         gap: 10px;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         font-weight: 500;
         color: var(--gray);
         line-height: 1.4;
@@ -606,16 +589,52 @@
         background: rgba(255, 106, 0, 0.1);
         border-color: var(--orange);
       }
-
       /* ──────────────────────────────
-       FEATURES (PowerFix-style cards)
+       BRANDS
     ────────────────────────────── */
-      #features {
-        padding: 100px 0;
+      .brands-wrap {
         max-width: 1280px;
         margin: 0 auto;
-        padding-left: 40px;
-        padding-right: 40px;
+        padding: 0 40px 80px;
+      }
+      .brands-title {
+        text-align: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 22px;
+      }
+      .brands-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      .brand-pill {
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 50px;
+        padding: 9px 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--gray);
+        transition:
+          border-color 0.25s,
+          color 0.25s;
+      }
+      .brand-pill:hover {
+        border-color: var(--oborder);
+        color: var(--white);
+      }
+      /* ──────────────────────────────
+       FEATURES
+    ────────────────────────────── */
+      #features {
+        padding: 100px 40px;
+        max-width: 1280px;
+        margin: 0 auto;
       }
       .features-header {
         text-align: center;
@@ -677,7 +696,6 @@
         color: var(--gray);
         line-height: 1.7;
       }
-
       /* ──────────────────────────────
        HOW IT WORKS
     ────────────────────────────── */
@@ -764,7 +782,6 @@
         color: var(--gray);
         line-height: 1.7;
       }
-
       /* ──────────────────────────────
        TESTIMONIALS
     ────────────────────────────── */
@@ -835,9 +852,8 @@
         color: var(--muted);
         margin-top: 2px;
       }
-
       /* ──────────────────────────────
-       CONTACT
+       CONTACT (display only)
     ────────────────────────────── */
       #contact {
         background: var(--dark);
@@ -857,12 +873,11 @@
       .contact-grid {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 56px 40px 80px;
+        padding: 48px 40px 80px;
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 48px;
-      }
-      .c-info {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
       }
       .c-info-title {
         font-size: 1.1rem;
@@ -897,6 +912,25 @@
         justify-content: center;
         font-size: 1.1rem;
         flex-shrink: 0;
+        color: var(--orange);
+      }
+      .c-ico svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+      a.c-row {
+        color: inherit;
+      }
+      a.c-row:hover .c-val {
+        color: var(--orange);
+      }
+      a.c-row:hover .c-ico {
+        background: var(--grad);
+        color: #fff;
+      }
+      .c-val {
+        transition: color 0.25s;
       }
       .c-lbl {
         font-size: 0.68rem;
@@ -910,103 +944,25 @@
         font-weight: 700;
         margin-top: 2px;
       }
-      .c-val a {
-        color: var(--white);
+      .c-note {
+        margin-top: 16px;
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.7;
       }
-      .c-val a:hover {
-        color: var(--orange);
-      }
-
       .map-wrap {
         border-radius: 14px;
         overflow: hidden;
         border: 1px solid var(--border);
-        margin-top: 12px;
       }
       .map-wrap iframe {
         display: block;
         width: 100%;
-        height: 210px;
+        height: 100%;
+        min-height: 420px;
         border: none;
         filter: invert(1) brightness(0.3) grayscale(0.4);
       }
-
-      /* form */
-      .c-form {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 36px;
-      }
-      .c-form-title {
-        font-size: 1.1rem;
-        font-weight: 800;
-        margin-bottom: 24px;
-      }
-      .f2-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-      .f2-group {
-        margin-bottom: 12px;
-      }
-      .f2-label {
-        font-size: 0.68rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--muted);
-        display: block;
-        margin-bottom: 6px;
-      }
-      .f2-input {
-        width: 100%;
-        padding: 12px 14px;
-        background: var(--dark3);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        color: var(--white);
-        font-family: "Poppins", sans-serif;
-        font-size: 0.87rem;
-        outline: none;
-        transition: border-color 0.25s;
-      }
-      .f2-input:focus {
-        border-color: var(--orange);
-      }
-      .f2-input::placeholder {
-        color: var(--muted);
-      }
-      textarea.f2-input {
-        resize: vertical;
-        min-height: 108px;
-      }
-      select.f2-input option {
-        background: var(--dark2);
-      }
-      .f2-btn {
-        width: 100%;
-        padding: 14px;
-        background: var(--grad);
-        color: #fff;
-        font-family: "Poppins", sans-serif;
-        font-size: 0.9rem;
-        font-weight: 700;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        transition:
-          opacity 0.25s,
-          transform 0.25s;
-        box-shadow: 0 6px 24px rgba(255, 106, 0, 0.35);
-      }
-      .f2-btn:hover {
-        opacity: 0.9;
-        transform: translateY(-2px);
-      }
-
       /* ──────────────────────────────
        FOOTER
     ────────────────────────────── */
@@ -1021,8 +977,6 @@
         display: grid;
         grid-template-columns: 1.5fr 1fr 1fr 1fr;
         gap: 48px;
-      }
-      .foot-brand-wrap {
       }
       .foot-brand {
         margin-bottom: 14px;
@@ -1051,12 +1005,19 @@
         transition:
           background 0.25s,
           border-color 0.25s,
-          color 0.25s;
+          color 0.25s,
+          transform 0.25s;
+      }
+      .foot-social a svg {
+        width: 17px;
+        height: 17px;
+        display: block;
       }
       .foot-social a:hover {
         background: var(--orange);
         border-color: var(--orange);
         color: #fff;
+        transform: translateY(-2px);
       }
       .foot-col-title {
         font-size: 0.78rem;
@@ -1107,7 +1068,6 @@
       .foot-bottom-links a:hover {
         color: var(--orange);
       }
-
       /* ──────────────────────────────
        SCROLL TOP
     ────────────────────────────── */
@@ -1141,7 +1101,6 @@
       .go-top:hover {
         transform: translateY(-3px);
       }
-
       /* ──────────────────────────────
        REVEAL
     ────────────────────────────── */
@@ -1156,7 +1115,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-
       /* ──────────────────────────────
        RESPONSIVE
     ────────────────────────────── */
@@ -1170,7 +1128,7 @@
           display: none;
         }
         .services-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr 1fr;
         }
         .features-grid {
           grid-template-columns: 1fr 1fr;
@@ -1189,6 +1147,9 @@
           grid-template-columns: 1fr;
           padding: 40px 32px 64px;
         }
+        .map-wrap iframe {
+          min-height: 260px;
+        }
         .footer-inner {
           grid-template-columns: 1fr 1fr;
           gap: 32px;
@@ -1205,8 +1166,10 @@
         #process {
           padding: 80px 32px;
         }
-        .services-inner {
-          padding: 0 32px;
+        .services-inner,
+        .brands-wrap {
+          padding-left: 32px;
+          padding-right: 32px;
         }
         .contact-top {
           padding: 64px 32px 0;
@@ -1234,6 +1197,9 @@
         .nav-cta {
           display: none;
         }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
         .features-grid {
           grid-template-columns: 1fr;
         }
@@ -1247,9 +1213,6 @@
           grid-template-columns: 1fr;
           gap: 24px;
         }
-        .f2-row {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </head>
@@ -1259,14 +1222,14 @@
       <div class="nav-inner">
         <div class="logo">
           <div class="logo-icon">D</div>
-          <div class="logo-text">D<span>Tech</span> Repair</div>
+          <div class="logo-text">D<span>Tech</span> Solutions</div>
         </div>
         <ul class="nav-links" id="nl">
           <li><a href="#services">Services</a></li>
           <li><a href="#features">Why Us</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#testimonials">Reviews</a></li>
-          <li><a href="#contact" class="nav-cta">Book a Repair</a></li>
+          <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         </ul>
         <button class="hamburger" id="hb">
           <span></span><span></span><span></span>
@@ -1279,11 +1242,15 @@
       <div class="ticker-track">
         <!-- first copy -->
         <div class="ticker-item">
-          <span class="ti-icon">📱</span> Phone Repair
+          <span class="ti-icon">📱</span> Cellphone Repair
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
           <span class="ti-icon">💻</span> Laptop Repair
+          <span class="ticker-dot"></span>
+        </div>
+        <div class="ticker-item">
+          <span class="ti-icon">🖥️</span> Desktop PC Repair
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
@@ -1295,7 +1262,7 @@
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
-          <span class="ti-icon">🖥️</span> Screen Replacement
+          <span class="ti-icon">📺</span> LCD / Screen Replacement
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
@@ -1303,7 +1270,7 @@
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
-          <span class="ti-icon">💾</span> SSD Upgrade
+          <span class="ti-icon">💾</span> SSD & RAM Upgrade
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
@@ -1315,16 +1282,24 @@
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
-          <span class="ti-icon">📸</span> Camera Repair
+          <span class="ti-icon">🖨️</span> PC Build & Setup
+          <span class="ticker-dot"></span>
+        </div>
+        <div class="ticker-item">
+          <span class="ti-icon">🔧</span> Free Diagnosis
           <span class="ticker-dot"></span>
         </div>
         <!-- duplicate copy for seamless loop -->
         <div class="ticker-item">
-          <span class="ti-icon">📱</span> Phone Repair
+          <span class="ti-icon">📱</span> Cellphone Repair
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
           <span class="ti-icon">💻</span> Laptop Repair
+          <span class="ticker-dot"></span>
+        </div>
+        <div class="ticker-item">
+          <span class="ti-icon">🖥️</span> Desktop PC Repair
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
@@ -1336,7 +1311,7 @@
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
-          <span class="ti-icon">🖥️</span> Screen Replacement
+          <span class="ti-icon">📺</span> LCD / Screen Replacement
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
@@ -1344,7 +1319,7 @@
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
-          <span class="ti-icon">💾</span> SSD Upgrade
+          <span class="ti-icon">💾</span> SSD & RAM Upgrade
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
@@ -1356,7 +1331,11 @@
           <span class="ticker-dot"></span>
         </div>
         <div class="ticker-item">
-          <span class="ti-icon">📸</span> Camera Repair
+          <span class="ti-icon">🖨️</span> PC Build & Setup
+          <span class="ticker-dot"></span>
+        </div>
+        <div class="ticker-item">
+          <span class="ti-icon">🔧</span> Free Diagnosis
           <span class="ticker-dot"></span>
         </div>
       </div>
@@ -1366,20 +1345,20 @@
     <section id="hero">
       <div class="hero-left rv">
         <div class="hero-badge">
-          <span class="hero-badge-dot"></span> Available 7 Days a Week
+          <span class="hero-badge-dot"></span> Phone · Laptop · PC · CCTV
         </div>
         <h1 class="hero-h1">
           <span class="line-plain">Any Gadget Problem?</span>
           <span class="line-grad">Ipa-Fix mo na!</span>
         </h1>
         <p class="hero-p">
-          Professional repair services for phones, laptops, and CCTV systems in
-          Calamba City, Laguna. Fast, affordable, and handled by a trusted
-          technician — Daniel De Torres.
+          Professional repair services for cellphones, laptops, desktop
+          computers, and CCTV systems in Calamba City, Laguna. Fast, affordable,
+          and handled by a trusted technician: Daniel De Torres.
         </p>
         <div class="hero-actions">
           <a href="#services" class="btn-primary">🔧 View Services</a>
-          <a href="#contact" class="btn-secondary">Get a Free Quote →</a>
+          <a href="#contact" class="btn-secondary">Contact Us →</a>
         </div>
         <div class="hero-stats">
           <div class="h-stat">
@@ -1396,14 +1375,13 @@
           </div>
         </div>
       </div>
-
       <div class="hero-right rv" style="transition-delay: 0.2s">
         <div class="phone-mock-wrap">
           <div class="phone-glow"></div>
           <img
             class="phone-img"
             src="https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=560&q=80"
-            alt="Phone repair"
+            alt="Cellphone repair"
           />
           <div class="chip chip-1">
             <div class="chip-icon">⭐</div>
@@ -1437,43 +1415,39 @@
           <div class="sec-label">What We Fix</div>
           <h2 class="sec-title">Our <span>Repair Services</span></h2>
           <p class="sec-sub">
-            Three areas. One trusted technician. Your device is in good hands.
+            Four areas. One trusted technician. Your device is in good hands.
           </p>
         </div>
         <div class="services-grid">
-          <!-- PHONE -->
+          <!-- CELLPHONE -->
           <div class="svc-card rv">
             <div class="svc-card-img">
               <img
                 src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=700&q=80"
-                alt="Phone repair"
+                alt="Cellphone repair"
                 loading="lazy"
               />
               <div class="svc-card-img-overlay"></div>
-              <div class="svc-badge">📱 Phones</div>
+              <div class="svc-badge">📱 Cellphone</div>
               <div class="svc-icon-big">📱</div>
             </div>
             <div class="svc-body">
-              <div class="svc-name">Phone Repair</div>
+              <div class="svc-name">Cellphone Repair</div>
               <ul class="svc-list">
-                <li>
-                  <span class="svc-check">●</span> LCD / Screen Replacement
-                </li>
+                <li><span class="svc-check">●</span> LCD / Screen Replacement</li>
                 <li><span class="svc-check">●</span> Battery Replacement</li>
-                <li><span class="svc-check">●</span> Charging Port Repair</li>
-                <li>
-                  <span class="svc-check">●</span> Replacement Charging Pin
-                </li>
-                <li><span class="svc-check">●</span> Switch Button Repair</li>
+                <li><span class="svc-check">●</span> Charging Port & Pin Repair</li>
                 <li><span class="svc-check">●</span> Camera Repair</li>
-                <li><span class="svc-check">●</span> Battery Repair</li>
+                <li><span class="svc-check">●</span> Speaker, Earpiece & Mic</li>
+                <li><span class="svc-check">●</span> Power / Volume Button</li>
+                <li><span class="svc-check">●</span> Water Damage Cleaning</li>
+                <li><span class="svc-check">●</span> Software & Firmware Flashing</li>
               </ul>
-              <a href="#contact" class="svc-btn">Book Repair →</a>
+              <a href="#contact" class="svc-btn">Contact Us →</a>
             </div>
           </div>
-
           <!-- LAPTOP -->
-          <div class="svc-card rv" style="transition-delay: 0.1s">
+          <div class="svc-card rv" style="transition-delay: 0.08s">
             <div class="svc-card-img">
               <img
                 src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?w=700&q=80"
@@ -1487,28 +1461,51 @@
             <div class="svc-body">
               <div class="svc-name">Laptop Repair</div>
               <ul class="svc-list">
-                <li>
-                  <span class="svc-check">●</span> Reformat & OS Reinstall
-                </li>
-                <li><span class="svc-check">●</span> Deep Cleaning</li>
+                <li><span class="svc-check">●</span> Reformat & OS Reinstall</li>
+                <li><span class="svc-check">●</span> Deep Cleaning & Repaste</li>
                 <li><span class="svc-check">●</span> SSD & RAM Upgrade</li>
-                <li>
-                  <span class="svc-check">●</span> Malware / Virus Removal
-                </li>
-                <li><span class="svc-check">●</span> Activate Windows</li>
-                <li><span class="svc-check">●</span> Install Microsoft Word</li>
+                <li><span class="svc-check">●</span> Laptop Screen Replacement</li>
+                <li><span class="svc-check">●</span> Keyboard & Battery Replacement</li>
+                <li><span class="svc-check">●</span> Malware / Virus Removal</li>
+                <li><span class="svc-check">●</span> Activate Windows & MS Office</li>
                 <li><span class="svc-check">●</span> Install Any Software</li>
               </ul>
-              <a href="#contact" class="svc-btn">Book Repair →</a>
+              <a href="#contact" class="svc-btn">Contact Us →</a>
             </div>
           </div>
-
+          <!-- COMPUTER / DESKTOP -->
+          <div class="svc-card rv" style="transition-delay: 0.16s">
+            <div class="svc-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=700&q=80"
+                alt="Desktop computer repair"
+                loading="lazy"
+              />
+              <div class="svc-card-img-overlay"></div>
+              <div class="svc-badge">🖥️ Computer</div>
+              <div class="svc-icon-big">🖥️</div>
+            </div>
+            <div class="svc-body">
+              <div class="svc-name">Computer Repair</div>
+              <ul class="svc-list">
+                <li><span class="svc-check">●</span> Desktop PC Troubleshooting</li>
+                <li><span class="svc-check">●</span> Custom PC Build & Assembly</li>
+                <li><span class="svc-check">●</span> Hardware Upgrade & Replacement</li>
+                <li><span class="svc-check">●</span> No Display / No Boot Fix</li>
+                <li><span class="svc-check">●</span> Reformat & OS Installation</li>
+                <li><span class="svc-check">●</span> Cleaning & Thermal Paste</li>
+                <li><span class="svc-check">●</span> Printer & Peripheral Setup</li>
+                <li><span class="svc-check">●</span> Data Backup & Recovery</li>
+              </ul>
+              <a href="#contact" class="svc-btn">Contact Us →</a>
+            </div>
+          </div>
           <!-- CCTV -->
-          <div class="svc-card rv" style="transition-delay: 0.2s">
+          <div class="svc-card rv" style="transition-delay: 0.24s">
             <div class="svc-card-img">
               <img
                 src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80"
-                alt="CCTV"
+                alt="CCTV installation"
                 loading="lazy"
               />
               <div class="svc-card-img-overlay"></div>
@@ -1520,19 +1517,38 @@
               <ul class="svc-list">
                 <li><span class="svc-check">●</span> CCTV Installation</li>
                 <li><span class="svc-check">●</span> CCTV Maintenance</li>
-                <li>
-                  <span class="svc-check">●</span> Camera Positioning & Setup
-                </li>
-                <li>
-                  <span class="svc-check">●</span> DVR / NVR Configuration
-                </li>
+                <li><span class="svc-check">●</span> Camera Positioning & Setup</li>
+                <li><span class="svc-check">●</span> DVR / NVR Configuration</li>
                 <li><span class="svc-check">●</span> Remote Viewing Setup</li>
                 <li><span class="svc-check">●</span> Cable Management</li>
+                <li><span class="svc-check">●</span> System Upgrade & Repair</li>
                 <li><span class="svc-check">●</span> CCTV Services & More</li>
               </ul>
-              <a href="#contact" class="svc-btn">Book Service →</a>
+              <a href="#contact" class="svc-btn">Contact Us →</a>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="brands-wrap rv">
+        <div class="brands-title">Brands We Service</div>
+        <div class="brands-list">
+          <div class="brand-pill">iPhone</div>
+          <div class="brand-pill">Samsung</div>
+          <div class="brand-pill">Xiaomi / Redmi</div>
+          <div class="brand-pill">OPPO</div>
+          <div class="brand-pill">vivo</div>
+          <div class="brand-pill">realme</div>
+          <div class="brand-pill">Infinix</div>
+          <div class="brand-pill">HUAWEI</div>
+          <div class="brand-pill">Acer</div>
+          <div class="brand-pill">ASUS</div>
+          <div class="brand-pill">Lenovo</div>
+          <div class="brand-pill">HP</div>
+          <div class="brand-pill">Dell</div>
+          <div class="brand-pill">MacBook</div>
+          <div class="brand-pill">Hikvision</div>
+          <div class="brand-pill">Dahua</div>
+          <div class="brand-pill">+ More</div>
         </div>
       </div>
     </section>
@@ -1551,48 +1567,48 @@
           <div class="feat-icon">⚡</div>
           <div class="feat-title">Fast Turnaround</div>
           <div class="feat-desc">
-            Most repairs completed same-day or within 24 hours. You'll get
+            Most repairs are done same-day or within 24 hours, and you'll get
             real-time updates throughout the process.
           </div>
         </div>
         <div class="feat-card rv" style="transition-delay: 0.07s">
-          <div class="feat-icon">💰</div>
-          <div class="feat-title">Affordable Pricing</div>
+          <div class="feat-icon">🔍</div>
+          <div class="feat-title">Free Diagnosis</div>
           <div class="feat-desc">
-            Transparent quotes with no hidden fees. You'll know exactly what
-            you're paying before we start any work.
+            We check your device and give you an honest quote first. No fix, no
+            charge — you decide before we start.
           </div>
         </div>
         <div class="feat-card rv" style="transition-delay: 0.14s">
-          <div class="feat-icon">🔒</div>
-          <div class="feat-title">Data Safe & Private</div>
+          <div class="feat-icon">💰</div>
+          <div class="feat-title">Affordable Pricing</div>
           <div class="feat-desc">
-            Your files and personal data are handled with full confidentiality.
-            We never access what we don't need to.
+            Transparent rates with no hidden fees. You'll know exactly what
+            you're paying before any work begins.
           </div>
         </div>
         <div class="feat-card rv" style="transition-delay: 0.21s">
-          <div class="feat-icon">🏠</div>
-          <div class="feat-title">Home Service Available</div>
+          <div class="feat-icon">🔒</div>
+          <div class="feat-title">Data Safe & Private</div>
           <div class="feat-desc">
-            Can't come to us? We go to you. On-site visits available within
-            Calamba City and nearby Laguna areas.
+            Your photos, messages, and files stay private. We never access
+            anything we don't need to for the repair.
           </div>
         </div>
         <div class="feat-card rv" style="transition-delay: 0.28s">
-          <div class="feat-icon">🛡️</div>
-          <div class="feat-title">Trusted & Verified</div>
+          <div class="feat-icon">🏠</div>
+          <div class="feat-title">Home Service Available</div>
           <div class="feat-desc">
-            Hundreds of happy customers served. Rely on a technician with proven
-            skills and an honest track record.
+            Can't come to us? We go to you. On-site visits and CCTV
+            installations within Calamba City and nearby Laguna areas.
           </div>
         </div>
         <div class="feat-card rv" style="transition-delay: 0.35s">
           <div class="feat-icon">📞</div>
           <div class="feat-title">7-Day Support</div>
           <div class="feat-desc">
-            We're available seven days a week. Reach us via Facebook, Instagram,
-            or Viber — we respond fast.
+            We're available seven days a week. Reach us on Facebook, Instagram,
+            Threads, TikTok, or Viber — we respond fast.
           </div>
         </div>
       </div>
@@ -1613,16 +1629,16 @@
             <div class="step-circle">📞 <span class="step-num">1</span></div>
             <div class="step-title">Contact Us</div>
             <div class="step-desc">
-              Message us on Facebook, Instagram, or call 0916-726-6833 to tell
-              us about your device problem.
+              Message us on Facebook, Instagram, Threads, or TikTok — or call
+              0924-367-2984 and tell us your device and the problem.
             </div>
           </div>
           <div class="step rv" style="transition-delay: 0.1s">
             <div class="step-circle">🔍 <span class="step-num">2</span></div>
-            <div class="step-title">Diagnosis</div>
+            <div class="step-title">Free Diagnosis</div>
             <div class="step-desc">
-              We thoroughly inspect your device and give you an honest quote —
-              no surprises, no pressure.
+              We inspect your device and give you an honest quote — no
+              surprises, no pressure to proceed.
             </div>
           </div>
           <div class="step rv" style="transition-delay: 0.2s">
@@ -1630,15 +1646,15 @@
             <div class="step-title">Repair</div>
             <div class="step-desc">
               We use quality parts and professional tools to fix your device
-              right, guaranteed the first time.
+              right the first time.
             </div>
           </div>
           <div class="step rv" style="transition-delay: 0.3s">
             <div class="step-circle">✅ <span class="step-num">4</span></div>
             <div class="step-title">Pick Up</div>
             <div class="step-desc">
-              Device tested, cleaned, and ready for you. Pick up in person or
-              request delivery to your address.
+              Device tested, cleaned, and ready. Pick it up in person or request
+              delivery to your address.
             </div>
           </div>
         </div>
@@ -1669,8 +1685,8 @@
         <div class="test-card rv" style="transition-delay: 0.1s">
           <div class="test-stars">★★★★★</div>
           <p class="test-quote">
-            "My laptop was so slow and full of viruses. After the reformat it
-            feels brand new! Very professional and honest service."
+            "My laptop was so slow and full of viruses. After the reformat and
+            SSD upgrade it feels brand new! Very professional and honest."
           </p>
           <div class="test-author">
             <div class="test-ava">JL</div>
@@ -1697,47 +1713,113 @@
       </div>
     </section>
 
-    <!-- ── CONTACT ── -->
+    <!-- ── CONTACT (display only) ── -->
     <section id="contact">
       <div class="contact-top rv">
         <div class="sec-label">Get In Touch</div>
-        <h2 class="sec-title">Book a <span>Repair Today</span></h2>
+        <h2 class="sec-title">Contact <span>Information</span></h2>
         <p>
           Mayroon kang sira na gadget? Ipa-fix mo na sa amin — mabilis, mura, at
-          maaasahan.
+          maaasahan. Message or call us anytime.
         </p>
       </div>
       <div class="contact-grid">
         <div class="c-info rv">
-          <div class="c-info-title">Contact Information</div>
+          <div class="c-info-title">Reach Us Here</div>
           <div class="c-items">
-            <a href="tel:+639167266833" class="c-row">
-              <div class="c-ico">📞</div>
+            <div class="c-row">
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"
+                  />
+                </svg>
+              </div>
               <div>
                 <div class="c-lbl">Phone / Viber</div>
-                <div class="c-val">0916-726-6833</div>
+                <div class="c-val">0924-367-2984</div>
               </div>
-            </a>
-            <a href="https://facebook.com" target="_blank" class="c-row">
-              <div class="c-ico">📘</div>
+            </div>
+            <a
+              class="c-row"
+              href="https://web.facebook.com/dnldtrrs"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94Z"
+                  />
+                </svg>
+              </div>
               <div>
                 <div class="c-lbl">Facebook</div>
-                <div class="c-val">Daniel De Torres</div>
+                <div class="c-val">@dnldtrrs</div>
               </div>
             </a>
             <a
-              href="https://instagram.com/dnldtrrs"
-              target="_blank"
               class="c-row"
+              href="https://www.instagram.com/dnldtrrs"
+              target="_blank"
+              rel="noopener"
             >
-              <div class="c-ico">📸</div>
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.37a4.49 4.49 0 1 1 0 8.98 4.49 4.49 0 0 1 0-8.98Zm0 7.4a2.91 2.91 0 1 0 0-5.82 2.91 2.91 0 0 0 0 5.82Zm5.72-7.6a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"
+                  />
+                </svg>
+              </div>
               <div>
                 <div class="c-lbl">Instagram</div>
                 <div class="c-val">@dnldtrrs</div>
               </div>
             </a>
+            <a
+              class="c-row"
+              href="https://www.threads.com/@dnldtrrs"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M16.36 11.13c-.1-.05-.2-.09-.3-.13-.18-3.29-1.98-5.18-5-5.2h-.04c-1.81 0-3.31.77-4.24 2.17l1.66 1.14c.7-1.05 1.79-1.28 2.58-1.28h.03c.98 0 1.72.29 2.2.85.35.41.58 .98.7 1.7a12.6 12.6 0 0 0-2.83-.14c-2.85.17-4.68 1.83-4.56 4.15.06 1.17.65 2.18 1.65 2.85.85.56 1.94.84 3.07.78 1.5-.08 2.67-.65 3.49-1.69.62-.79 1.01-1.81 1.19-3.1.72.44 1.26 1.01 1.55 1.7.5 1.18.53 3.12-1.05 4.7-1.39 1.38-3.06 1.98-5.58 2-2.8-.02-4.91-.92-6.28-2.66C3.32 17.35 2.66 15.1 2.64 12c.02-3.1.68-5.35 1.96-6.97C5.97 3.29 8.08 2.39 10.88 2.37c2.82.02 4.97.92 6.39 2.68.7.86 1.22 1.95 1.57 3.22l1.94-.52c-.42-1.56-1.09-2.91-2-4.03C16.96 1.5 14.3.35 10.89.33h-.01C7.48.35 4.85 1.5 3.06 3.75 1.48 5.76.66 8.55.64 12v.01c.02 3.44.84 6.24 2.42 8.24 1.79 2.25 4.42 3.4 7.83 3.42h.01c3.03-.02 5.17-.81 6.93-2.57 2.3-2.3 2.23-5.18 1.47-6.95-.54-1.27-1.58-2.3-3-3.02Zm-5.2 5.98c-1.25.07-2.55-.49-2.61-1.66-.05-.87.61-1.84 2.68-1.96.24-.01.47-.02.7-.02.75 0 1.46.07 2.1.21-.24 2.98-1.64 3.37-2.87 3.43Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="c-lbl">Threads</div>
+                <div class="c-val">@dnldtrrs</div>
+              </div>
+            </a>
+            <a
+              class="c-row"
+              href="https://www.tiktok.com/@dnl.dtrrs"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06v-3.1a5.67 5.67 0 0 0-.77-.05A5.68 5.68 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38v-3.1a4.28 4.28 0 0 1-3.24-1.47Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="c-lbl">TikTok</div>
+                <div class="c-val">@dnl.dtrrs</div>
+              </div>
+            </a>
             <div class="c-row">
-              <div class="c-ico">📍</div>
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"
+                  />
+                </svg>
+              </div>
               <div>
                 <div class="c-lbl">Location</div>
                 <div class="c-val">
@@ -1745,72 +1827,35 @@
                 </div>
               </div>
             </div>
+            <div class="c-row">
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm.75-13h-1.5v5.44l4.24 2.55.75-1.24-3.49-2.07V7Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="c-lbl">Business Hours</div>
+                <div class="c-val">Monday – Sunday · 8:00 AM – 8:00 PM</div>
+              </div>
+            </div>
           </div>
-          <div class="map-wrap">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.1975543566235!2d121.17579647483211!3d14.225551187998844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd63f7e92aeb7d%3A0xd1c3e1b96c7b6cc3!2sPansol%2C%20Calamba%2C%20Laguna%2C%20Philippines!5e0!3m2!1sen!2sph!4v1734743000000!5m2!1sen!2sph"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            >
-            </iframe>
-          </div>
+          <p class="c-note">
+            Walk-ins welcome. For faster service, message us your device model
+            and the problem before you drop by. Home service and CCTV site
+            visits available around Calamba and nearby Laguna areas.
+          </p>
         </div>
-
-        <div class="c-form rv" style="transition-delay: 0.15s">
-          <div class="c-form-title">Send a Message</div>
-          <form id="rf">
-            <div class="f2-row">
-              <div class="f2-group" style="margin-bottom: 0">
-                <label class="f2-label">Full Name</label>
-                <input
-                  type="text"
-                  class="f2-input"
-                  placeholder="Juan Dela Cruz"
-                  required
-                />
-              </div>
-              <div class="f2-group" style="margin-bottom: 0">
-                <label class="f2-label">Contact Number</label>
-                <input
-                  type="tel"
-                  class="f2-input"
-                  placeholder="09XX XXX XXXX"
-                  required
-                />
-              </div>
-            </div>
-            <div class="f2-group">
-              <label class="f2-label">Service Needed</label>
-              <select class="f2-input" required>
-                <option value="" disabled selected>Select a service</option>
-                <option>📱 Phone — LCD / Screen Replacement</option>
-                <option>📱 Phone — Battery Replacement</option>
-                <option>📱 Phone — Charging Port Repair</option>
-                <option>📱 Phone — Camera Repair</option>
-                <option>📱 Phone — Other</option>
-                <option>💻 Laptop — Reformat</option>
-                <option>💻 Laptop — SSD / RAM Upgrade</option>
-                <option>💻 Laptop — Virus Removal</option>
-                <option>💻 Laptop — Software Installation</option>
-                <option>💻 Laptop — Cleaning</option>
-                <option>📷 CCTV — Installation</option>
-                <option>📷 CCTV — Maintenance</option>
-                <option>📷 CCTV — Other</option>
-              </select>
-            </div>
-            <div class="f2-group">
-              <label class="f2-label">Describe the Problem</label>
-              <textarea
-                class="f2-input"
-                placeholder="Tell us what's wrong with your device..."
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="f2-btn" id="sb">
-              🔧 Send Repair Request
-            </button>
-          </form>
+        <div class="map-wrap rv" style="transition-delay: 0.15s">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.1975543566235!2d121.17579647483211!3d14.225551187998844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd63f7e92aeb7d%3A0xd1c3e1b96c7b6cc3!2sPansol%2C%20Calamba%2C%20Laguna%2C%20Philippines!5e0!3m2!1sen!2sph!4v1734743000000!5m2!1sen!2sph"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="DTech Solutions location"
+          >
+          </iframe>
         </div>
       </div>
     </section>
@@ -1822,33 +1867,82 @@
           <div class="foot-brand">
             <div class="logo">
               <div class="logo-icon">D</div>
-              <div class="logo-text">D<span>Tech</span> Repair</div>
+              <div class="logo-text">D<span>Tech</span> Solutions</div>
             </div>
           </div>
           <p class="foot-desc">
-            Your trusted gadget repair partner in Calamba City, Laguna.
-            Professional, fast, and affordable.
+            Your trusted gadget repair partner in Calamba City, Laguna. Phones,
+            laptops, computers, and CCTV — professional, fast, and affordable.
           </p>
           <div class="foot-social">
-            <a href="https://facebook.com" target="_blank" title="Facebook"
-              >📘</a
-            >
             <a
-              href="https://instagram.com/dnldtrrs"
+              href="https://web.facebook.com/dnldtrrs"
               target="_blank"
-              title="Instagram"
-              >📸</a
+              rel="noopener"
+              title="Facebook"
+              aria-label="Facebook"
             >
-            <a href="tel:+639167266833" title="Call us">📞</a>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/dnldtrrs"
+              target="_blank"
+              rel="noopener"
+              title="Instagram"
+              aria-label="Instagram"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.37a4.49 4.49 0 1 1 0 8.98 4.49 4.49 0 0 1 0-8.98Zm0 7.4a2.91 2.91 0 1 0 0-5.82 2.91 2.91 0 0 0 0 5.82Zm5.72-7.6a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.threads.com/@dnldtrrs"
+              target="_blank"
+              rel="noopener"
+              title="Threads"
+              aria-label="Threads"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M16.36 11.13c-.1-.05-.2-.09-.3-.13-.18-3.29-1.98-5.18-5-5.2h-.04c-1.81 0-3.31.77-4.24 2.17l1.66 1.14c.7-1.05 1.79-1.28 2.58-1.28h.03c.98 0 1.72.29 2.2.85.35.41.58.98.7 1.7a12.6 12.6 0 0 0-2.83-.14c-2.85.17-4.68 1.83-4.56 4.15.06 1.17.65 2.18 1.65 2.85.85.56 1.94.84 3.07.78 1.5-.08 2.67-.65 3.49-1.69.62-.79 1.01-1.81 1.19-3.1.72.44 1.26 1.01 1.55 1.7.5 1.18.53 3.12-1.05 4.7-1.39 1.38-3.06 1.98-5.58 2-2.8-.02-4.91-.92-6.28-2.66C3.32 17.35 2.66 15.1 2.64 12c.02-3.1.68-5.35 1.96-6.97C5.97 3.29 8.08 2.39 10.88 2.37c2.82.02 4.97.92 6.39 2.68.7.86 1.22 1.95 1.57 3.22l1.94-.52c-.42-1.56-1.09-2.91-2-4.03C16.96 1.5 14.3.35 10.89.33h-.01C7.48.35 4.85 1.5 3.06 3.75 1.48 5.76.66 8.55.64 12v.01c.02 3.44.84 6.24 2.42 8.24 1.79 2.25 4.42 3.4 7.83 3.42h.01c3.03-.02 5.17-.81 6.93-2.57 2.3-2.3 2.23-5.18 1.47-6.95-.54-1.27-1.58-2.3-3-3.02Zm-5.2 5.98c-1.25.07-2.55-.49-2.61-1.66-.05-.87.61-1.84 2.68-1.96.24-.01.47-.02.7-.02.75 0 1.46.07 2.1.21-.24 2.98-1.64 3.37-2.87 3.43Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/@dnl.dtrrs"
+              target="_blank"
+              rel="noopener"
+              title="TikTok"
+              aria-label="TikTok"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06v-3.1a5.67 5.67 0 0 0-.77-.05A5.68 5.68 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38v-3.1a4.28 4.28 0 0 1-3.24-1.47Z"
+                />
+              </svg>
+            </a>
+            <a href="tel:+639243672984" title="Call us" aria-label="Call us">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"
+                />
+              </svg>
+            </a>
           </div>
         </div>
         <div class="foot-col">
           <div class="foot-col-title">Services</div>
           <ul>
-            <li><a href="#services">Phone Repair</a></li>
+            <li><a href="#services">Cellphone Repair</a></li>
             <li><a href="#services">Laptop Repair</a></li>
+            <li><a href="#services">Computer Repair</a></li>
             <li><a href="#services">CCTV Installation</a></li>
-            <li><a href="#services">Home Service</a></li>
           </ul>
         </div>
         <div class="foot-col">
@@ -1863,16 +1957,46 @@
         <div class="foot-col">
           <div class="foot-col-title">Contact</div>
           <ul>
-            <li><a href="tel:+639167266833">0916-726-6833</a></li>
-            <li><a href="https://facebook.com">Daniel De Torres</a></li>
-            <li><a href="https://instagram.com/dnldtrrs">@dnldtrrs</a></li>
-            <li><a href="#">Calamba City, Laguna</a></li>
+            <li><a href="tel:+639243672984">0924-367-2984</a></li>
+            <li>
+              <a
+                href="https://web.facebook.com/dnldtrrs"
+                target="_blank"
+                rel="noopener"
+                >Facebook</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/dnldtrrs"
+                target="_blank"
+                rel="noopener"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.threads.com/@dnldtrrs"
+                target="_blank"
+                rel="noopener"
+                >Threads</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/@dnl.dtrrs"
+                target="_blank"
+                rel="noopener"
+                >TikTok</a
+              >
+            </li>
+            <li><a href="#contact">Calamba City, Laguna</a></li>
           </ul>
         </div>
       </div>
       <div class="foot-bottom">
         <div class="foot-copy">
-          DTech Repair by Daniel De Torres · All Rights Reserved © 2025
+          DTech Solutions by Daniel De Torres · All Rights Reserved © 2025
         </div>
         <div class="foot-bottom-links">
           <a href="#">Privacy Policy</a>
@@ -1888,12 +2012,10 @@
       const hb = document.getElementById("hb");
       const nl = document.getElementById("nl");
       const gt = document.getElementById("gt");
-
       hb.addEventListener("click", () => nl.classList.toggle("open"));
       nl.querySelectorAll("a").forEach((a) =>
         a.addEventListener("click", () => nl.classList.remove("open")),
       );
-
       // scroll top
       window.addEventListener("scroll", () =>
         gt.classList.toggle("show", window.scrollY > 400),
@@ -1901,7 +2023,6 @@
       gt.addEventListener("click", () =>
         window.scrollTo({ top: 0, behavior: "smooth" }),
       );
-
       // reveal
       const obs = new IntersectionObserver(
         (entries) => {
@@ -1912,22 +2033,6 @@
         { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
       );
       document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
-
-      // form submit
-      const rf = document.getElementById("rf");
-      const sb = document.getElementById("sb");
-      rf.addEventListener("submit", (e) => {
-        e.preventDefault();
-        sb.textContent = "✅ Sent! We'll contact you soon.";
-        sb.style.background = "linear-gradient(135deg,#22c55e,#16a34a)";
-        sb.disabled = true;
-        setTimeout(() => {
-          sb.textContent = "🔧 Send Repair Request";
-          sb.style.background = "";
-          sb.disabled = false;
-          rf.reset();
-        }, 4000);
-      });
     </script>
   </body>
 </html>
