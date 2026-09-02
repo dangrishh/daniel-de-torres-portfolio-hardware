@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>DTech Solutions — Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --black: #000000;
+        --dark: #0a0a0a;
+        --dark2: #111111;
+        --card: #141414;
+        --orange: #ff6a00;
+        --yellow: #ffb700;
+        --grad: linear-gradient(135deg, #ff6a00, #ffb700);
+        --white: #ffffff;
+        --gray: #888888;
+        --muted: #444444;
+        --border: rgba(255, 255, 255, 0.07);
+        --oborder: rgba(255, 106, 0, 0.3);
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--black);
+        color: var(--white);
+        min-height: 100vh;
+      }
+      a {
+        color: var(--orange);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--grad);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        font-weight: 900;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .logo-text {
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+      .logo-text span {
+        background: var(--grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      /* ── login ── */
+      .login-wrap {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .login-card {
+        width: 100%;
+        max-width: 360px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 36px 32px;
+      }
+      .login-card .logo {
+        justify-content: center;
+        margin-bottom: 24px;
+      }
+      label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--gray);
+        margin-bottom: 6px;
+        margin-top: 16px;
+      }
+      input[type="email"],
+      input[type="password"],
+      input[type="text"],
+      input[type="file"] {
+        width: 100%;
+        background: var(--dark2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 11px 14px;
+        color: var(--white);
+        font-family: inherit;
+        font-size: 0.88rem;
+      }
+      input[type="file"] {
+        padding: 8px 10px;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--oborder);
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        border-radius: 50px;
+        background: var(--grad);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 11px 24px;
+        transition: opacity 0.2s;
+      }
+      button:hover {
+        opacity: 0.9;
+      }
+      button.secondary {
+        background: none;
+        border: 1.5px solid var(--oborder);
+        color: var(--orange);
+      }
+      button.danger {
+        background: none;
+        border: 1.5px solid rgba(255, 80, 80, 0.4);
+        color: #ff6b6b;
+        padding: 8px 16px;
+        font-size: 0.78rem;
+      }
+      .login-card button[type="submit"] {
+        width: 100%;
+        margin-top: 24px;
+      }
+      .error-text {
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        margin-top: 12px;
+        min-height: 1em;
+      }
+      /* ── dashboard ── */
+      .admin-header {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 32px;
+      }
+      .admin-main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 24px 100px;
+      }
+      .admin-block {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px;
+        margin-bottom: 24px;
+      }
+      .admin-block h2 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+      .admin-block .hint {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+      .preview-img {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        max-height: 180px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 14px;
+        border: 1px solid var(--border);
+      }
+      .upload-status {
+        font-size: 0.78rem;
+        color: var(--gray);
+        margin-top: 10px;
+        min-height: 1.2em;
+      }
+      .svc-admin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+      }
+      .svc-admin-item h3 {
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--orange);
+      }
+      .svc-admin-item button {
+        margin-top: 12px;
+        width: 100%;
+      }
+      #galleryForm {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-end;
+      }
+      #galleryForm input[type="file"] {
+        flex: 1 1 220px;
+        margin-top: 0;
+      }
+      #galleryForm input[type="text"] {
+        flex: 1 1 220px;
+        margin-top: 0;
+      }
+      #galleryForm label {
+        margin-top: 0;
+        flex-basis: 100%;
+      }
+      .gallery-admin-list {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .gallery-admin-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: var(--dark2);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 12px;
+      }
+      .gallery-admin-row.inactive {
+        opacity: 0.55;
+      }
+      .gallery-admin-thumb {
+        width: 96px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 8px;
+        flex-shrink: 0;
+        background: var(--black);
+      }
+      .gallery-admin-caption {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 0.85rem;
+        color: var(--gray);
+      }
+      .gallery-admin-caption .inquiry-tag {
+        width: fit-content;
+        color: #4ade80;
+        border-color: rgba(74, 222, 128, 0.3);
+      }
+      .gallery-admin-caption .inactive-tag {
+        color: var(--muted);
+      }
+      .gallery-admin-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .empty-note {
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+      .unread-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 6px;
+        border-radius: 50px;
+        background: var(--grad);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 800;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+      .inquiry-row {
+        background: var(--dark2);
+        border: 1px solid var(--border);
+        border-left: 3px solid transparent;
+        border-radius: 14px;
+        padding: 16px 18px;
+        margin-bottom: 12px;
+      }
+      .inquiry-row.unread {
+        border-left-color: var(--orange);
+      }
+      .inquiry-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: baseline;
+        margin-bottom: 8px;
+      }
+      .inquiry-name {
+        font-weight: 700;
+        font-size: 0.88rem;
+      }
+      .inquiry-contact {
+        font-size: 0.8rem;
+        color: var(--orange);
+      }
+      .inquiry-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--gray);
+        background: var(--dark);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 3px 10px;
+      }
+      .inquiry-date {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-left: auto;
+      }
+      .inquiry-message {
+        font-size: 0.85rem;
+        color: var(--gray);
+        line-height: 1.6;
+        margin-bottom: 12px;
+        white-space: pre-wrap;
+      }
+      .inquiry-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .inquiry-actions button {
+        padding: 7px 16px;
+        font-size: 0.75rem;
+      }
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── LOGIN ── -->
+    <div class="login-wrap" id="loginScreen">
+      <div class="login-card">
+        <div class="logo">
+          <div class="logo-icon">D</div>
+          <div class="logo-text">D<span>Tech</span> Admin</div>
+        </div>
+        <form id="loginForm">
+          <label for="loginEmail">Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            autocomplete="username"
+            required
+          />
+          <label for="loginPassword">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            autocomplete="current-password"
+            required
+          />
+          <button type="submit">Log In</button>
+          <div class="error-text" id="loginError"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ── DASHBOARD ── -->
+    <div id="dashboard" hidden>
+      <header class="admin-header">
+        <div class="logo">
+          <div class="logo-icon">D</div>
+          <div class="logo-text">D<span>Tech</span> Admin</div>
+        </div>
+        <button class="secondary" id="logoutBtn">Log Out</button>
+      </header>
+
+      <main class="admin-main">
+        <section class="admin-block">
+          <h2>Contact Messages<span class="unread-badge" id="unreadBadge" hidden></span></h2>
+          <div class="hint">Messages sent through the website's Contact form.</div>
+          <div id="inquiriesList"></div>
+        </section>
+
+        <section class="admin-block">
+          <h2>Hero Image</h2>
+          <div class="hint">The main photo on the homepage banner.</div>
+          <img class="preview-img" id="heroPreview" hidden />
+          <input type="file" id="heroFile" accept="image/*" />
+          <button id="heroUploadBtn" style="margin-top: 14px">
+            Upload / Replace
+          </button>
+          <div class="upload-status" id="heroStatus"></div>
+        </section>
+
+        <section class="admin-block">
+          <h2>Service Images</h2>
+          <div class="hint">
+            The photo shown on each of the 4 service cards.
+          </div>
+          <div class="svc-admin-grid" id="svcAdminGrid"></div>
+        </section>
+
+        <section class="admin-block">
+          <h2>Our Work Gallery</h2>
+          <div class="hint">
+            Photos or short videos of repairs/installs, shown in a new "Our
+            Work" section on the site. Newest first.
+          </div>
+          <form id="galleryForm">
+            <label for="galleryFile">Photo or video</label>
+            <input type="file" id="galleryFile" accept="image/*,video/*" />
+            <input
+              type="text"
+              id="galleryCaption"
+              placeholder="Caption (optional)"
+            />
+            <button type="submit">Add to Gallery</button>
+          </form>
+          <div class="upload-status" id="galleryStatus"></div>
+          <div class="gallery-admin-list" id="galleryList"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { auth, db, storage } from "./firebase-config.js";
+      import {
+        signInWithEmailAndPassword,
+        signOut,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+      import {
+        doc,
+        getDoc,
+        setDoc,
+        collection,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        getDocs,
+        query,
+        orderBy,
+        serverTimestamp,
+      } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+      import {
+        ref,
+        uploadBytesResumable,
+        getDownloadURL,
+        deleteObject,
+      } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+
+      const MAX_IMAGE_BYTES = 10 * 1024 * 1024; // 10MB
+      const MAX_VIDEO_BYTES = 50 * 1024 * 1024; // 50MB
+      const mediaDocRef = doc(db, "site", "media");
+
+      const loginScreen = document.getElementById("loginScreen");
+      const dashboard = document.getElementById("dashboard");
+      const loginForm = document.getElementById("loginForm");
+      const loginError = document.getElementById("loginError");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        loginError.textContent = "";
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+        } catch (err) {
+          loginError.textContent =
+            "Login failed. Check your email and password.";
+        }
+      });
+
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", () => signOut(auth));
+
+      onAuthStateChanged(auth, (user) => {
+        loginScreen.hidden = !!user;
+        dashboard.hidden = !user;
+        if (user) initDashboard();
+      });
+
+      function extOf(file) {
+        const parts = file.name.split(".");
+        return parts.length > 1 ? parts.pop().toLowerCase() : "jpg";
+      }
+
+      function uploadFile(path, file, statusEl) {
+        return new Promise((resolve) => {
+          const storageRef = ref(storage, path);
+          const task = uploadBytesResumable(storageRef, file);
+          task.on(
+            "state_changed",
+            (snapshot) => {
+              const pct = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+              );
+              statusEl.textContent = `Uploading… ${pct}%`;
+            },
+            (err) => {
+              statusEl.textContent = "Upload failed: " + err.message;
+              resolve(null);
+            },
+            async () => {
+              const url = await getDownloadURL(task.snapshot.ref);
+              resolve(url);
+            },
+          );
+        });
+      }
+
+      let dashboardInitialized = false;
+      function initDashboard() {
+        if (dashboardInitialized) {
+          loadHero();
+          loadServiceImages();
+          loadGallery();
+          loadInquiries();
+          return;
+        }
+        dashboardInitialized = true;
+        buildServiceBlocks();
+        loadHero();
+        loadServiceImages();
+        loadGallery();
+        loadInquiries();
+      }
+
+      // ── Contact messages ──
+      const inquiriesColRef = collection(db, "inquiries");
+
+      async function loadInquiries() {
+        const list = document.getElementById("inquiriesList");
+        const badge = document.getElementById("unreadBadge");
+        list.innerHTML = "";
+        const q = query(inquiriesColRef, orderBy("createdAt", "desc"));
+        const snaps = await getDocs(q);
+
+        if (snaps.empty) {
+          const empty = document.createElement("div");
+          empty.className = "empty-note";
+          empty.textContent = "No messages yet.";
+          list.appendChild(empty);
+          badge.hidden = true;
+          return;
+        }
+
+        let unreadCount = 0;
+        snaps.forEach((docSnap) => {
+          const item = docSnap.data();
+          if (!item.read) unreadCount++;
+
+          const row = document.createElement("div");
+          row.className = "inquiry-row" + (item.read ? "" : " unread");
+
+          const meta = document.createElement("div");
+          meta.className = "inquiry-meta";
+
+          const nameEl = document.createElement("div");
+          nameEl.className = "inquiry-name";
+          nameEl.textContent = item.name;
+          meta.appendChild(nameEl);
+
+          const contactEl = document.createElement("div");
+          contactEl.className = "inquiry-contact";
+          contactEl.textContent = item.contact;
+          meta.appendChild(contactEl);
+
+          if (item.category) {
+            const catEl = document.createElement("div");
+            catEl.className = "inquiry-tag";
+            catEl.textContent = item.category;
+            meta.appendChild(catEl);
+          }
+
+          if (item.serviceType) {
+            const typeEl = document.createElement("div");
+            typeEl.className = "inquiry-tag";
+            typeEl.textContent = item.serviceType;
+            meta.appendChild(typeEl);
+          }
+
+          const dateEl = document.createElement("div");
+          dateEl.className = "inquiry-date";
+          dateEl.textContent = item.createdAt?.toDate
+            ? item.createdAt.toDate().toLocaleString()
+            : "";
+          meta.appendChild(dateEl);
+
+          row.appendChild(meta);
+
+          const msgEl = document.createElement("div");
+          msgEl.className = "inquiry-message";
+          msgEl.textContent = item.message;
+          row.appendChild(msgEl);
+
+          const actions = document.createElement("div");
+          actions.className = "inquiry-actions";
+
+          const toggleBtn = document.createElement("button");
+          toggleBtn.type = "button";
+          toggleBtn.className = "secondary";
+          toggleBtn.textContent = item.read ? "Mark Unread" : "Mark Read";
+          toggleBtn.addEventListener("click", async () => {
+            await updateDoc(doc(db, "inquiries", docSnap.id), {
+              read: !item.read,
+            });
+            loadInquiries();
+          });
+          actions.appendChild(toggleBtn);
+
+          const delBtn = document.createElement("button");
+          delBtn.type = "button";
+          delBtn.className = "danger";
+          delBtn.textContent = "Delete";
+          delBtn.addEventListener("click", async () => {
+            if (!confirm("Delete this message?")) return;
+            await deleteDoc(doc(db, "inquiries", docSnap.id));
+            loadInquiries();
+          });
+          actions.appendChild(delBtn);
+
+          row.appendChild(actions);
+          list.appendChild(row);
+        });
+
+        if (unreadCount > 0) {
+          badge.hidden = false;
+          badge.textContent = String(unreadCount);
+        } else {
+          badge.hidden = true;
+        }
+      }
+
+      // ── Hero ──
+      async function loadHero() {
+        const snap = await getDoc(mediaDocRef);
+        const data = snap.exists() ? snap.data() : {};
+        const preview = document.getElementById("heroPreview");
+        if (data.hero) {
+          preview.src = data.hero;
+          preview.hidden = false;
+        }
+      }
+
+      document
+        .getElementById("heroUploadBtn")
+        .addEventListener("click", async () => {
+          const fileInput = document.getElementById("heroFile");
+          const status = document.getElementById("heroStatus");
+          const file = fileInput.files[0];
+          if (!file) {
+            status.textContent = "Choose an image first.";
+            return;
+          }
+          if (!file.type.startsWith("image/")) {
+            status.textContent = "Hero must be an image.";
+            return;
+          }
+          if (file.size > MAX_IMAGE_BYTES) {
+            status.textContent = "Image is too large (max 10MB).";
+            return;
+          }
+          const url = await uploadFile(
+            `media/hero.${extOf(file)}`,
+            file,
+            status,
+          );
+          if (url) {
+            await setDoc(mediaDocRef, { hero: url }, { merge: true });
+            status.textContent = "Hero image updated.";
+            fileInput.value = "";
+            loadHero();
+          }
+        });
+
+      // ── Service images ──
+      const SERVICES = [
+        { key: "cellphone", label: "Cellphone" },
+        { key: "laptop", label: "Laptop" },
+        { key: "computer", label: "Computer" },
+        { key: "cctv", label: "CCTV" },
+      ];
+
+      function buildServiceBlocks() {
+        const grid = document.getElementById("svcAdminGrid");
+        SERVICES.forEach((svc) => {
+          const block = document.createElement("div");
+          block.className = "svc-admin-item";
+
+          const heading = document.createElement("h3");
+          heading.textContent = svc.label;
+          block.appendChild(heading);
+
+          const preview = document.createElement("img");
+          preview.className = "preview-img";
+          preview.id = `svcPreview-${svc.key}`;
+          preview.hidden = true;
+          block.appendChild(preview);
+
+          const fileInput = document.createElement("input");
+          fileInput.type = "file";
+          fileInput.accept = "image/*";
+          fileInput.id = `svcFile-${svc.key}`;
+          block.appendChild(fileInput);
+
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = "Upload / Replace";
+          btn.addEventListener("click", () => uploadServiceImage(svc.key));
+          block.appendChild(btn);
+
+          const status = document.createElement("div");
+          status.className = "upload-status";
+          status.id = `svcStatus-${svc.key}`;
+          block.appendChild(status);
+
+          grid.appendChild(block);
+        });
+      }
+
+      async function loadServiceImages() {
+        const snap = await getDoc(mediaDocRef);
+        const data = snap.exists() ? snap.data() : {};
+        const services = data.services || {};
+        SERVICES.forEach((svc) => {
+          const preview = document.getElementById(`svcPreview-${svc.key}`);
+          if (services[svc.key]) {
+            preview.src = services[svc.key];
+            preview.hidden = false;
+          }
+        });
+      }
+
+      async function uploadServiceImage(key) {
+        const fileInput = document.getElementById(`svcFile-${key}`);
+        const status = document.getElementById(`svcStatus-${key}`);
+        const file = fileInput.files[0];
+        if (!file) {
+          status.textContent = "Choose an image first.";
+          return;
+        }
+        if (!file.type.startsWith("image/")) {
+          status.textContent = "Must be an image.";
+          return;
+        }
+        if (file.size > MAX_IMAGE_BYTES) {
+          status.textContent = "Image is too large (max 10MB).";
+          return;
+        }
+        const url = await uploadFile(
+          `media/services/${key}.${extOf(file)}`,
+          file,
+          status,
+        );
+        if (url) {
+          await setDoc(
+            mediaDocRef,
+            { services: { [key]: url } },
+            { merge: true },
+          );
+          status.textContent = "Updated.";
+          fileInput.value = "";
+          loadServiceImages();
+        }
+      }
+
+      // ── Gallery ──
+      const galleryColRef = collection(db, "site", "media", "gallery");
+
+      document
+        .getElementById("galleryForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const fileInput = document.getElementById("galleryFile");
+          const captionInput = document.getElementById("galleryCaption");
+          const status = document.getElementById("galleryStatus");
+          const file = fileInput.files[0];
+          if (!file) {
+            status.textContent = "Choose a photo or video first.";
+            return;
+          }
+          const isVideo = file.type.startsWith("video/");
+          const isImage = file.type.startsWith("image/");
+          if (!isVideo && !isImage) {
+            status.textContent = "File must be an image or video.";
+            return;
+          }
+          const maxBytes = isVideo ? MAX_VIDEO_BYTES : MAX_IMAGE_BYTES;
+          if (file.size > maxBytes) {
+            status.textContent = `File is too large (max ${isVideo ? "50MB" : "10MB"}).`;
+            return;
+          }
+          const path = `media/gallery/${Date.now()}-${crypto.randomUUID()}.${extOf(file)}`;
+          const url = await uploadFile(path, file, status);
+          if (url) {
+            await addDoc(galleryColRef, {
+              type: isVideo ? "video" : "image",
+              url,
+              storagePath: path,
+              caption: captionInput.value.trim(),
+              active: true,
+              createdAt: serverTimestamp(),
+            });
+            status.textContent = "Added to gallery.";
+            fileInput.value = "";
+            captionInput.value = "";
+            loadGallery();
+          }
+        });
+
+      async function loadGallery() {
+        const list = document.getElementById("galleryList");
+        list.innerHTML = "";
+        const q = query(galleryColRef, orderBy("createdAt", "desc"));
+        const snaps = await getDocs(q);
+        if (snaps.empty) {
+          const empty = document.createElement("div");
+          empty.className = "empty-note";
+          empty.textContent = "No gallery items yet.";
+          list.appendChild(empty);
+          return;
+        }
+        snaps.forEach((docSnap) => {
+          const item = docSnap.data();
+          const isActive = item.active !== false;
+          const row = document.createElement("div");
+          row.className = "gallery-admin-row" + (isActive ? "" : " inactive");
+
+          const thumb =
+            item.type === "video"
+              ? document.createElement("video")
+              : document.createElement("img");
+          thumb.className = "gallery-admin-thumb";
+          thumb.src = item.url;
+          if (item.type === "video") thumb.muted = true;
+          row.appendChild(thumb);
+
+          const captionWrap = document.createElement("div");
+          captionWrap.className = "gallery-admin-caption";
+          const captionText = document.createElement("div");
+          captionText.textContent = item.caption || "(no caption)";
+          captionWrap.appendChild(captionText);
+          const statusTag = document.createElement("span");
+          statusTag.className =
+            "inquiry-tag" + (isActive ? "" : " inactive-tag");
+          statusTag.textContent = isActive ? "Live in slideshow" : "Hidden";
+          captionWrap.appendChild(statusTag);
+          row.appendChild(captionWrap);
+
+          const actions = document.createElement("div");
+          actions.className = "gallery-admin-actions";
+
+          const toggleBtn = document.createElement("button");
+          toggleBtn.type = "button";
+          toggleBtn.className = "secondary";
+          toggleBtn.textContent = isActive ? "Hide" : "Show";
+          toggleBtn.addEventListener("click", async () => {
+            await updateDoc(doc(db, "site", "media", "gallery", docSnap.id), {
+              active: !isActive,
+            });
+            loadGallery();
+          });
+          actions.appendChild(toggleBtn);
+
+          const delBtn = document.createElement("button");
+          delBtn.type = "button";
+          delBtn.className = "danger";
+          delBtn.textContent = "Delete";
+          delBtn.addEventListener("click", async () => {
+            if (!confirm("Delete this gallery item?")) return;
+            await deleteDoc(
+              doc(db, "site", "media", "gallery", docSnap.id),
+            );
+            if (item.storagePath) {
+              try {
+                await deleteObject(ref(storage, item.storagePath));
+              } catch (err) {
+                console.warn("Could not delete storage file", err);
+              }
+            }
+            loadGallery();
+          });
+          actions.appendChild(delBtn);
+
+          row.appendChild(actions);
+
+          list.appendChild(row);
+        });
+      }
+    </script>
+  </body>
+</html>

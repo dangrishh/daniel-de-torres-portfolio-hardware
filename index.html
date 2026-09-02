@@ -44,7 +44,7 @@
         --grad: linear-gradient(135deg, #ff6a00, #ffb700);
         --white: #ffffff;
         --gray: #888888;
-        --muted: #444444;
+        --muted: #7a7a7a;
         --border: rgba(255, 255, 255, 0.07);
         --oborder: rgba(255, 106, 0, 0.3);
       }
@@ -868,6 +868,105 @@
         margin-top: 2px;
       }
       /* ──────────────────────────────
+       OUR WORK
+    ────────────────────────────── */
+      #work {
+        padding: 100px 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .work-header {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+      .work-carousel {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--card);
+      }
+      .work-track {
+        display: flex;
+        transition: transform 0.6s ease;
+      }
+      .work-slide {
+        min-width: 100%;
+        position: relative;
+      }
+      .work-slide-media {
+        aspect-ratio: 16 / 9;
+        background: var(--dark2);
+      }
+      .work-slide-media img,
+      .work-slide-media video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .work-caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 28px 32px;
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.85));
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .work-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 1.4rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+        z-index: 2;
+      }
+      .work-nav:hover {
+        background: var(--orange);
+      }
+      .work-nav.prev {
+        left: 16px;
+      }
+      .work-nav.next {
+        right: 16px;
+      }
+      .work-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 18px 0;
+      }
+      .work-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--border);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .work-dot.active {
+        background: var(--orange);
+        transform: scale(1.3);
+      }
+      /* ──────────────────────────────
        CONTACT (display only)
     ────────────────────────────── */
       #contact {
@@ -900,26 +999,42 @@
         margin-bottom: 20px;
       }
       .c-items {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 12px;
       }
       .c-row {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 16px;
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 14px;
-        padding: 16px 18px;
-        transition: border-color 0.25s;
+        padding: 18px 20px;
+        transition:
+          border-color 0.25s,
+          transform 0.2s;
       }
       .c-row:hover {
         border-color: var(--oborder);
       }
+      .c-row--wide {
+        grid-column: 1 / -1;
+      }
+      .c-row--primary {
+        border-color: var(--oborder);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 106, 0, 0.08),
+          rgba(255, 106, 0, 0.02)
+        );
+      }
+      .c-row--primary .c-val {
+        font-size: 1rem;
+      }
       .c-ico {
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
         border-radius: 12px;
         background: rgba(255, 106, 0, 0.1);
         display: flex;
@@ -937,6 +1052,9 @@
       a.c-row {
         color: inherit;
       }
+      a.c-row:hover {
+        transform: translateY(-2px);
+      }
       a.c-row:hover .c-val {
         color: var(--orange);
       }
@@ -944,31 +1062,93 @@
         background: var(--grad);
         color: #fff;
       }
-      .c-val {
-        transition: color 0.25s;
-      }
       .c-lbl {
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         font-weight: 600;
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 0.8px;
       }
       .c-val {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         font-weight: 700;
-        margin-top: 2px;
+        margin-top: 4px;
+        line-height: 1.4;
+        transition: color 0.25s;
+      }
+      .c-social-row {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-top: 4px;
+      }
+      .c-social-lbl {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+      .c-social-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .c-social-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 7px 16px 7px 8px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--white);
+        transition:
+          border-color 0.25s,
+          color 0.25s;
+      }
+      .c-social-pill:hover {
+        border-color: var(--oborder);
+        color: var(--orange);
+      }
+      .c-social-ico {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 106, 0, 0.1);
+        color: var(--orange);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .c-social-ico svg {
+        width: 15px;
+        height: 15px;
+        display: block;
+      }
+      .c-social-pill:hover .c-social-ico {
+        background: var(--grad);
+        color: #fff;
       }
       .c-note {
-        margin-top: 16px;
-        font-size: 0.8rem;
-        color: var(--muted);
+        margin-top: 20px;
+        font-size: 0.85rem;
+        color: var(--gray);
         line-height: 1.7;
       }
       .map-wrap {
         border-radius: 14px;
         overflow: hidden;
         border: 1px solid var(--border);
+        min-height: 420px;
       }
       .map-wrap iframe {
         display: block;
@@ -1174,7 +1354,8 @@
           padding: 16px 32px;
         }
         #features,
-        #testimonials {
+        #testimonials,
+        #work {
           padding-left: 32px;
           padding-right: 32px;
         }
@@ -1224,9 +1405,25 @@
         .test-grid {
           grid-template-columns: 1fr;
         }
+        .work-slide-media {
+          aspect-ratio: 4 / 3;
+        }
+        .work-nav {
+          width: 34px;
+          height: 34px;
+          font-size: 1.1rem;
+        }
         .footer-inner {
           grid-template-columns: 1fr;
           gap: 24px;
+        }
+        .c-items {
+          grid-template-columns: 1fr;
+        }
+        .c-social-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
         }
       }
     </style>
@@ -1244,6 +1441,7 @@
           <li><a href="#features">Why Us</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#work">Our Work</a></li>
           <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         </ul>
         <button class="hamburger" id="hb">
@@ -1395,6 +1593,7 @@
           <div class="phone-glow"></div>
           <img
             class="phone-img"
+            id="heroImg"
             src="https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=560&q=80"
             alt="Cellphone repair"
           />
@@ -1438,9 +1637,10 @@
           <div class="svc-card rv">
             <div class="svc-card-img">
               <img
-                src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=700&q=80"
+                src="https://images.unsplash.com/photo-1611396000732-f8c9a933424f?w=700&q=80"
                 alt="Cellphone repair"
                 loading="lazy"
+                data-service-img="cellphone"
               />
               <div class="svc-card-img-overlay"></div>
               <div class="svc-badge">📱 Cellphone</div>
@@ -1465,9 +1665,10 @@
           <div class="svc-card rv" style="transition-delay: 0.08s">
             <div class="svc-card-img">
               <img
-                src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?w=700&q=80"
+                src="https://images.unsplash.com/photo-1544281679-a59fb2359715?w=700&q=80"
                 alt="Laptop repair"
                 loading="lazy"
+                data-service-img="laptop"
               />
               <div class="svc-card-img-overlay"></div>
               <div class="svc-badge">💻 Laptop</div>
@@ -1492,9 +1693,10 @@
           <div class="svc-card rv" style="transition-delay: 0.16s">
             <div class="svc-card-img">
               <img
-                src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=700&q=80"
+                src="https://images.unsplash.com/photo-1591238372338-22d30c883a86?w=700&q=80"
                 alt="Desktop computer repair"
                 loading="lazy"
+                data-service-img="computer"
               />
               <div class="svc-card-img-overlay"></div>
               <div class="svc-badge">🖥️ Computer</div>
@@ -1519,9 +1721,10 @@
           <div class="svc-card rv" style="transition-delay: 0.24s">
             <div class="svc-card-img">
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80"
+                src="https://images.unsplash.com/photo-1589935447067-5531094415d1?w=700&q=80"
                 alt="CCTV installation"
                 loading="lazy"
+                data-service-img="cctv"
               />
               <div class="svc-card-img-overlay"></div>
               <div class="svc-badge">📷 CCTV</div>
@@ -1728,6 +1931,27 @@
       </div>
     </section>
 
+    <!-- ── OUR WORK ── -->
+    <section id="work" hidden>
+      <div class="work-header rv">
+        <div class="sec-label">Our Work</div>
+        <h2 class="sec-title">Recent <span>Repairs & Installs</span></h2>
+        <p class="sec-sub">
+          A look at devices we've fixed and CCTV systems we've installed.
+        </p>
+      </div>
+      <div class="work-carousel rv" id="workCarousel">
+        <div class="work-track" id="workTrack"></div>
+        <button class="work-nav prev" id="workPrev" aria-label="Previous slide">
+          ‹
+        </button>
+        <button class="work-nav next" id="workNext" aria-label="Next slide">
+          ›
+        </button>
+      </div>
+      <div class="work-dots" id="workDots"></div>
+    </section>
+
     <!-- ── CONTACT (display only) ── -->
     <section id="contact">
       <div class="contact-top rv">
@@ -1742,7 +1966,7 @@
         <div class="c-info rv">
           <div class="c-info-title">Reach Us Here</div>
           <div class="c-items">
-            <div class="c-row">
+            <a class="c-row c-row--primary" href="tel:+639243672984">
               <div class="c-ico">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path
@@ -1751,12 +1975,12 @@
                 </svg>
               </div>
               <div>
-                <div class="c-lbl">Phone / Viber</div>
+                <div class="c-lbl">Call or Viber</div>
                 <div class="c-val">0924-367-2984</div>
               </div>
-            </div>
+            </a>
             <a
-              class="c-row"
+              class="c-row c-row--primary"
               href="https://web.facebook.com/dnldtrrs"
               target="_blank"
               rel="noopener"
@@ -1769,65 +1993,11 @@
                 </svg>
               </div>
               <div>
-                <div class="c-lbl">Facebook</div>
+                <div class="c-lbl">Message on Facebook</div>
                 <div class="c-val">@dnldtrrs</div>
               </div>
             </a>
-            <a
-              class="c-row"
-              href="https://www.instagram.com/dnldtrrs"
-              target="_blank"
-              rel="noopener"
-            >
-              <div class="c-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.37a4.49 4.49 0 1 1 0 8.98 4.49 4.49 0 0 1 0-8.98Zm0 7.4a2.91 2.91 0 1 0 0-5.82 2.91 2.91 0 0 0 0 5.82Zm5.72-7.6a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <div class="c-lbl">Instagram</div>
-                <div class="c-val">@dnldtrrs</div>
-              </div>
-            </a>
-            <a
-              class="c-row"
-              href="https://www.threads.com/@dnldtrrs"
-              target="_blank"
-              rel="noopener"
-            >
-              <div class="c-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M16.36 11.13c-.1-.05-.2-.09-.3-.13-.18-3.29-1.98-5.18-5-5.2h-.04c-1.81 0-3.31.77-4.24 2.17l1.66 1.14c.7-1.05 1.79-1.28 2.58-1.28h.03c.98 0 1.72.29 2.2.85.35.41.58 .98.7 1.7a12.6 12.6 0 0 0-2.83-.14c-2.85.17-4.68 1.83-4.56 4.15.06 1.17.65 2.18 1.65 2.85.85.56 1.94.84 3.07.78 1.5-.08 2.67-.65 3.49-1.69.62-.79 1.01-1.81 1.19-3.1.72.44 1.26 1.01 1.55 1.7.5 1.18.53 3.12-1.05 4.7-1.39 1.38-3.06 1.98-5.58 2-2.8-.02-4.91-.92-6.28-2.66C3.32 17.35 2.66 15.1 2.64 12c.02-3.1.68-5.35 1.96-6.97C5.97 3.29 8.08 2.39 10.88 2.37c2.82.02 4.97.92 6.39 2.68.7.86 1.22 1.95 1.57 3.22l1.94-.52c-.42-1.56-1.09-2.91-2-4.03C16.96 1.5 14.3.35 10.89.33h-.01C7.48.35 4.85 1.5 3.06 3.75 1.48 5.76.66 8.55.64 12v.01c.02 3.44.84 6.24 2.42 8.24 1.79 2.25 4.42 3.4 7.83 3.42h.01c3.03-.02 5.17-.81 6.93-2.57 2.3-2.3 2.23-5.18 1.47-6.95-.54-1.27-1.58-2.3-3-3.02Zm-5.2 5.98c-1.25.07-2.55-.49-2.61-1.66-.05-.87.61-1.84 2.68-1.96.24-.01.47-.02.7-.02.75 0 1.46.07 2.1.21-.24 2.98-1.64 3.37-2.87 3.43Z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <div class="c-lbl">Threads</div>
-                <div class="c-val">@dnldtrrs</div>
-              </div>
-            </a>
-            <a
-              class="c-row"
-              href="https://www.tiktok.com/@dnl.dtrrs"
-              target="_blank"
-              rel="noopener"
-            >
-              <div class="c-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06v-3.1a5.67 5.67 0 0 0-.77-.05A5.68 5.68 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38v-3.1a4.28 4.28 0 0 1-3.24-1.47Z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <div class="c-lbl">TikTok</div>
-                <div class="c-val">@dnl.dtrrs</div>
-              </div>
-            </a>
-            <div class="c-row">
+            <div class="c-row c-row--wide">
               <div class="c-ico">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path
@@ -1842,17 +2012,54 @@
                 </div>
               </div>
             </div>
-            <div class="c-row">
-              <div class="c-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm.75-13h-1.5v5.44l4.24 2.55.75-1.24-3.49-2.07V7Z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <div class="c-lbl">Business Hours</div>
-                <div class="c-val">Monday – Sunday · 8:00 AM – 8:00 PM</div>
+            <div class="c-social-row">
+              <span class="c-social-lbl">Also on</span>
+              <div class="c-social-pills">
+                <a
+                  class="c-social-pill"
+                  href="https://www.instagram.com/dnldtrrs"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="c-social-ico">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.37a4.49 4.49 0 1 1 0 8.98 4.49 4.49 0 0 1 0-8.98Zm0 7.4a2.91 2.91 0 1 0 0-5.82 2.91 2.91 0 0 0 0 5.82Zm5.72-7.6a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"
+                      />
+                    </svg>
+                  </span>
+                  Instagram
+                </a>
+                <a
+                  class="c-social-pill"
+                  href="https://www.threads.com/@dnldtrrs"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="c-social-ico">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M16.36 11.13c-.1-.05-.2-.09-.3-.13-.18-3.29-1.98-5.18-5-5.2h-.04c-1.81 0-3.31.77-4.24 2.17l1.66 1.14c.7-1.05 1.79-1.28 2.58-1.28h.03c.98 0 1.72.29 2.2.85.35.41.58 .98.7 1.7a12.6 12.6 0 0 0-2.83-.14c-2.85.17-4.68 1.83-4.56 4.15.06 1.17.65 2.18 1.65 2.85.85.56 1.94.84 3.07.78 1.5-.08 2.67-.65 3.49-1.69.62-.79 1.01-1.81 1.19-3.1.72.44 1.26 1.01 1.55 1.7.5 1.18.53 3.12-1.05 4.7-1.39 1.38-3.06 1.98-5.58 2-2.8-.02-4.91-.92-6.28-2.66C3.32 17.35 2.66 15.1 2.64 12c.02-3.1.68-5.35 1.96-6.97C5.97 3.29 8.08 2.39 10.88 2.37c2.82.02 4.97.92 6.39 2.68.7.86 1.22 1.95 1.57 3.22l1.94-.52c-.42-1.56-1.09-2.91-2-4.03C16.96 1.5 14.3.35 10.89.33h-.01C7.48.35 4.85 1.5 3.06 3.75 1.48 5.76.66 8.55.64 12v.01c.02 3.44.84 6.24 2.42 8.24 1.79 2.25 4.42 3.4 7.83 3.42h.01c3.03-.02 5.17-.81 6.93-2.57 2.3-2.3 2.23-5.18 1.47-6.95-.54-1.27-1.58-2.3-3-3.02Zm-5.2 5.98c-1.25.07-2.55-.49-2.61-1.66-.05-.87.61-1.84 2.68-1.96.24-.01.47-.02.7-.02.75 0 1.46.07 2.1.21-.24 2.98-1.64 3.37-2.87 3.43Z"
+                      />
+                    </svg>
+                  </span>
+                  Threads
+                </a>
+                <a
+                  class="c-social-pill"
+                  href="https://www.tiktok.com/@dnl.dtrrs"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="c-social-ico">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06v-3.1a5.67 5.67 0 0 0-.77-.05A5.68 5.68 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38v-3.1a4.28 4.28 0 0 1-3.24-1.47Z"
+                      />
+                    </svg>
+                  </span>
+                  TikTok
+                </a>
               </div>
             </div>
           </div>
@@ -1966,6 +2173,7 @@
             <li><a href="#features">About</a></li>
             <li><a href="#testimonials">Reviews</a></li>
             <li><a href="#process">How It Works</a></li>
+            <li><a href="#work">Our Work</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -2048,6 +2256,165 @@
         { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
       );
       document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
+    </script>
+
+    <!-- Loads admin-uploaded media (hero/service photos, Our Work gallery).
+         Falls back to the defaults above if Firebase is unreachable or
+         nothing has been uploaded yet. -->
+    <script type="module">
+      import { db } from "./firebase-config.js";
+      import {
+        doc,
+        getDoc,
+        collection,
+        getDocs,
+        query,
+        orderBy,
+      } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+      async function applyHeroAndServiceImages() {
+        try {
+          const snap = await getDoc(doc(db, "site", "media"));
+          if (!snap.exists()) return;
+          const data = snap.data();
+          if (data.hero) {
+            const heroImg = document.getElementById("heroImg");
+            if (heroImg) heroImg.src = data.hero;
+          }
+          if (data.services) {
+            document.querySelectorAll("[data-service-img]").forEach((img) => {
+              const key = img.getAttribute("data-service-img");
+              if (data.services[key]) img.src = data.services[key];
+            });
+          }
+        } catch (err) {
+          console.warn("Site media: using default images", err);
+        }
+      }
+
+      let workSlideCount = 0;
+      let workIndex = 0;
+      let workTimer = null;
+
+      function goToWorkSlide(i) {
+        workIndex = i;
+        document.getElementById("workTrack").style.transform =
+          `translateX(-${i * 100}%)`;
+        document.querySelectorAll(".work-dot").forEach((dot, idx) => {
+          dot.classList.toggle("active", idx === i);
+        });
+        // only the visible slide's video should play
+        document
+          .querySelectorAll(".work-slide-media video")
+          .forEach((v, idx) => {
+            if (idx === i) v.play().catch(() => {});
+            else v.pause();
+          });
+      }
+
+      function startWorkAutoplay() {
+        stopWorkAutoplay();
+        if (workSlideCount <= 1) return;
+        workTimer = setInterval(() => {
+          goToWorkSlide((workIndex + 1) % workSlideCount);
+        }, 5000);
+      }
+
+      function stopWorkAutoplay() {
+        if (workTimer) clearInterval(workTimer);
+        workTimer = null;
+      }
+
+      async function renderWorkGallery() {
+        const section = document.getElementById("work");
+        const track = document.getElementById("workTrack");
+        const dotsWrap = document.getElementById("workDots");
+        const prevBtn = document.getElementById("workPrev");
+        const nextBtn = document.getElementById("workNext");
+        try {
+          const q = query(
+            collection(db, "site", "media", "gallery"),
+            orderBy("createdAt", "desc"),
+          );
+          const snaps = await getDocs(q);
+          const items = [];
+          snaps.forEach((docSnap) => {
+            const item = docSnap.data();
+            if (item.active === false) return;
+            items.push(item);
+          });
+          if (items.length === 0) return;
+
+          items.forEach((item, i) => {
+            const slide = document.createElement("div");
+            slide.className = "work-slide";
+
+            const mediaWrap = document.createElement("div");
+            mediaWrap.className = "work-slide-media";
+            if (item.type === "video") {
+              const video = document.createElement("video");
+              video.src = item.url;
+              video.muted = true;
+              video.loop = true;
+              video.playsInline = true;
+              if (i === 0) video.autoplay = true;
+              mediaWrap.appendChild(video);
+            } else {
+              const img = document.createElement("img");
+              img.src = item.url;
+              img.alt = item.caption || "Our work";
+              img.loading = i === 0 ? "eager" : "lazy";
+              mediaWrap.appendChild(img);
+            }
+            slide.appendChild(mediaWrap);
+
+            if (item.caption) {
+              const caption = document.createElement("div");
+              caption.className = "work-caption";
+              caption.textContent = item.caption;
+              slide.appendChild(caption);
+            }
+            track.appendChild(slide);
+
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "work-dot" + (i === 0 ? " active" : "");
+            dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+            dot.addEventListener("click", () => {
+              goToWorkSlide(i);
+              startWorkAutoplay();
+            });
+            dotsWrap.appendChild(dot);
+          });
+
+          workSlideCount = items.length;
+          section.hidden = false;
+
+          if (workSlideCount <= 1) {
+            prevBtn.hidden = true;
+            nextBtn.hidden = true;
+            dotsWrap.hidden = true;
+          } else {
+            prevBtn.addEventListener("click", () => {
+              goToWorkSlide((workIndex - 1 + workSlideCount) % workSlideCount);
+              startWorkAutoplay();
+            });
+            nextBtn.addEventListener("click", () => {
+              goToWorkSlide((workIndex + 1) % workSlideCount);
+              startWorkAutoplay();
+            });
+            const carousel = document.getElementById("workCarousel");
+            carousel.addEventListener("mouseenter", stopWorkAutoplay);
+            carousel.addEventListener("mouseleave", startWorkAutoplay);
+            startWorkAutoplay();
+          }
+        } catch (err) {
+          console.warn("Site media: gallery unavailable", err);
+        }
+      }
+
+      applyHeroAndServiceImages();
+      renderWorkGallery();
     </script>
   </body>
 </html>
