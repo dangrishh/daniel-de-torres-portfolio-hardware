@@ -9,6 +9,22 @@
       content="DTech Solutions — cellphone, laptop, computer, and CCTV repair services in Calamba City, Laguna. Fast, affordable, and reliable."
     />
     <meta name="theme-color" content="#ff6a00" />
+    <!-- Set the theme before first paint so there's no flash of the wrong colors -->
+    <script>
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem("dtech-theme");
+        } catch (e) {}
+        var theme =
+          saved ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <!-- Browser tab icon (DT) -->
     <link
       rel="icon"
@@ -48,6 +64,18 @@
         --border: rgba(255, 255, 255, 0.07);
         --oborder: rgba(255, 106, 0, 0.3);
       }
+      :root[data-theme="light"] {
+        --black: #f8f7f5;
+        --dark: #f1efea;
+        --dark2: #eae7e0;
+        --dark3: #e0dcd3;
+        --card: #ffffff;
+        --white: #15130f;
+        --gray: #5c5c5c;
+        --muted: #737373;
+        --border: rgba(21, 19, 15, 0.1);
+        --oborder: rgba(255, 106, 0, 0.35);
+      }
       html {
         scroll-behavior: smooth;
       }
@@ -56,6 +84,9 @@
         background: var(--black);
         color: var(--white);
         overflow-x: hidden;
+        transition:
+          background 0.3s,
+          color 0.3s;
       }
       ::-webkit-scrollbar {
         width: 4px;
@@ -86,6 +117,10 @@
         background: rgba(0, 0, 0, 0.9);
         backdrop-filter: blur(20px);
         border-bottom: 1px solid var(--border);
+        transition: background 0.3s;
+      }
+      :root[data-theme="light"] nav {
+        background: rgba(248, 247, 245, 0.85);
       }
       .nav-inner {
         max-width: 1280px;
@@ -170,6 +205,48 @@
         background: var(--white);
         border-radius: 2px;
         display: block;
+      }
+      .nav-right-group {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .theme-toggle {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition:
+          border-color 0.25s,
+          color 0.25s,
+          background 0.25s;
+      }
+      .theme-toggle:hover {
+        border-color: var(--oborder);
+        color: var(--orange);
+      }
+      .theme-toggle svg {
+        width: 18px;
+        height: 18px;
+      }
+      .theme-toggle .theme-icon-sun {
+        display: none;
+      }
+      .theme-toggle .theme-icon-moon {
+        display: block;
+      }
+      :root[data-theme="light"] .theme-toggle .theme-icon-sun {
+        display: block;
+      }
+      :root[data-theme="light"] .theme-toggle .theme-icon-moon {
+        display: none;
       }
       /* ──────────────────────────────
        TICKER
@@ -510,6 +587,9 @@
       }
       .svc-card:hover {
         background: #1c1c1c;
+      }
+      :root[data-theme="light"] .svc-card:hover {
+        background: #efece5;
       }
       .svc-card-img {
         position: relative;
@@ -1158,6 +1238,9 @@
         border: none;
         filter: invert(1) brightness(0.3) grayscale(0.4);
       }
+      :root[data-theme="light"] .map-wrap iframe {
+        filter: none;
+      }
       /* ──────────────────────────────
        FOOTER
     ────────────────────────────── */
@@ -1384,6 +1467,9 @@
           gap: 16px;
           border-bottom: 1px solid var(--border);
         }
+        :root[data-theme="light"] .nav-links {
+          background: rgba(248, 247, 245, 0.98);
+        }
         .nav-links.open {
           display: flex;
         }
@@ -1444,9 +1530,38 @@
           <li><a href="#work">Our Work</a></li>
           <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         </ul>
-        <button class="hamburger" id="hb">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="nav-right-group">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle light and dark theme"
+            title="Toggle theme"
+          >
+            <svg
+              class="theme-icon-sun"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 4a1 1 0 0 1-1-1V1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1Zm0 19a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1ZM4.22 5.64a1 1 0 0 1-1.41 0L1.4 4.22A1 1 0 1 1 2.82 2.8l1.4 1.42a1 1 0 0 1 0 1.41Zm15.98 15.98a1 1 0 0 1-1.41 0l-1.41-1.41a1 1 0 0 1 1.41-1.41l1.41 1.4a1 1 0 0 1 0 1.42ZM3 13H1a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2Zm20 0h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2ZM4.22 18.36a1 1 0 0 1 0-1.41l1.41-1.41a1 1 0 1 1 1.41 1.41l-1.4 1.41a1 1 0 0 1-1.42 0ZM18.78 5.64a1 1 0 0 1 0-1.41l1.41-1.42a1 1 0 1 1 1.42 1.42l-1.41 1.41a1 1 0 0 1-1.42 0ZM12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Z"
+              />
+            </svg>
+            <svg
+              class="theme-icon-moon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.74 13.15a1 1 0 0 0-1.05-.27 7.5 7.5 0 0 1-9.57-9.57 1 1 0 0 0-1.28-1.28A9.53 9.53 0 0 0 2.5 11.5 9.5 9.5 0 0 0 12 21a9.53 9.53 0 0 0 9.47-8.34 1 1 0 0 0-.73-1.51Z"
+              />
+            </svg>
+          </button>
+          <button class="hamburger" id="hb">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
     </nav>
 
@@ -2239,6 +2354,19 @@
       nl.querySelectorAll("a").forEach((a) =>
         a.addEventListener("click", () => nl.classList.remove("open")),
       );
+      // theme toggle
+      const themeToggle = document.getElementById("themeToggle");
+      themeToggle.addEventListener("click", () => {
+        const current =
+          document.documentElement.getAttribute("data-theme") === "light"
+            ? "light"
+            : "dark";
+        const next = current === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", next);
+        try {
+          localStorage.setItem("dtech-theme", next);
+        } catch (e) {}
+      });
       // scroll top
       window.addEventListener("scroll", () =>
         gt.classList.toggle("show", window.scrollY > 400),
