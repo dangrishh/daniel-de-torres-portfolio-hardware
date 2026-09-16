@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const LINKS = [
-  { href: "#services", label: "Services" },
-  { href: "#features", label: "Why Us" },
-  { href: "#process", label: "Process" },
-  { href: "#testimonials", label: "Reviews" },
-  { href: "#work", label: "Our Work" },
+  { href: "/#services", label: "Services" },
+  { href: "/#features", label: "Why Us" },
+  { href: "/#process", label: "Process" },
+  { href: "/#testimonials", label: "Reviews" },
+  { href: "/#work", label: "Our Work" },
+  { href: "/supply", label: "CCTV Supply" },
 ];
 
 function toggleTheme() {
@@ -31,17 +33,6 @@ export default function Nav() {
     <nav>
       <div className="nav-inner">
         <div className="logo">
-          <div className="logo-icon">
-            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-              <path
-                d="M6,20 L12,20 L16,8 L20,32 L24,20 L24,8 A12,12 0 0,1 24,32 L24,20"
-                stroke="currentColor"
-                strokeWidth="4.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
           <div className="logo-text">
             D<span>Tech</span> Solutions
           </div>
@@ -49,19 +40,19 @@ export default function Nav() {
         <ul className={`nav-links${open ? " open" : ""}`}>
           {LINKS.map((link) => (
             <li key={link.href}>
-              <a href={link.href} onClick={() => setOpen(false)}>
+              <Link href={link.href} onClick={() => setOpen(false)}>
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li>
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="nav-cta"
               onClick={() => setOpen(false)}
             >
               Contact Us
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="nav-right-group">

@@ -12,6 +12,22 @@ const nextConfig: NextConfig = {
         hostname: "firebasestorage.googleapis.com",
         pathname: "/v0/b/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.hikvision.com",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.hikvision.com",
+      },
+      {
+        protocol: "https",
+        hostname: "material.dahuasecurity.com",
+      },
+      {
+        protocol: "https",
+        hostname: "materialfile.dahuasecurity.com",
+      },
     ],
   },
 };

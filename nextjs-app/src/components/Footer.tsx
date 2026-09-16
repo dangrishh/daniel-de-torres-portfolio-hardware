@@ -5,17 +5,6 @@ export default function Footer() {
         <div className="foot-brand-wrap">
           <div className="foot-brand">
             <div className="logo">
-              <div className="logo-icon">
-                <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <path
-                    d="M6,20 L12,20 L16,8 L20,32 L24,20 L24,8 A12,12 0 0,1 24,32 L24,20"
-                    stroke="currentColor"
-                    strokeWidth="4.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
               <div className="logo-text">
                 D<span>Tech</span> Solutions
               </div>
