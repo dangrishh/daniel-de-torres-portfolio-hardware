@@ -132,11 +132,11 @@ export default function SupplyCatalog() {
 
       {activeItem && (
         <div
-          className="supply-modal-backdrop"
+          className="lightbox-backdrop"
           onClick={() => setActiveItem(null)}
         >
           <div
-            className="supply-modal"
+            className="lightbox-box"
             role="dialog"
             aria-modal="true"
             aria-label={activeItem.name}
@@ -144,13 +144,13 @@ export default function SupplyCatalog() {
           >
             <button
               type="button"
-              className="supply-modal-close"
+              className="lightbox-close"
               onClick={() => setActiveItem(null)}
               aria-label="Close"
             >
               ✕
             </button>
-            <div className="supply-modal-img">
+            <div className="lightbox-img">
               <Image
                 src={activeItem.image}
                 alt={activeItem.name}
@@ -159,7 +159,7 @@ export default function SupplyCatalog() {
                 priority
               />
             </div>
-            <div className="supply-modal-info">
+            <div className="lightbox-info">
               <div className="supply-card-top">
                 <span className="supply-brand-badge">{activeItem.brand}</span>
                 <span className="supply-category-badge">

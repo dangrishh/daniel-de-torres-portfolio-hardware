@@ -1,4 +1,9 @@
-export type ServiceKey = "cellphone" | "laptop" | "computer" | "cctv";
+export type ServiceKey =
+  | "cellphone"
+  | "laptop"
+  | "computer"
+  | "cctv"
+  | "webdev";
 
 export interface SiteMedia {
   hero?: string;

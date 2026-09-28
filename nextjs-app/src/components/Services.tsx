@@ -13,6 +13,7 @@ interface ServiceDef {
   emoji: string;
   name: string;
   defaultImg: string;
+  gallery: string[];
   alt: string;
   items: string[];
 }
@@ -25,6 +26,11 @@ const SERVICES: ServiceDef[] = [
     name: "Cellphone Repair",
     defaultImg:
       "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?w=700&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?w=1200&q=80",
+      "https://images.unsplash.com/photo-1550041473-d296a3a8a18a?w=1200&q=80",
+      "https://images.unsplash.com/photo-1746005514011-ea00280f3b6e?w=1200&q=80",
+    ],
     alt: "Cellphone repair",
     items: [
       "LCD / Screen Replacement",
@@ -44,6 +50,11 @@ const SERVICES: ServiceDef[] = [
     name: "Laptop Repair",
     defaultImg:
       "https://images.unsplash.com/photo-1544281679-a59fb2359715?w=700&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1544281679-a59fb2359715?w=1200&q=80",
+      "https://images.unsplash.com/photo-1721333089073-215a56fd710c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1705494833979-9377fbdee229?w=1200&q=80",
+    ],
     alt: "Laptop repair",
     items: [
       "Reformat & OS Reinstall",
@@ -63,6 +74,11 @@ const SERVICES: ServiceDef[] = [
     name: "Computer Repair",
     defaultImg:
       "https://images.unsplash.com/photo-1591238372338-22d30c883a86?w=700&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1591238372338-22d30c883a86?w=1200&q=80",
+      "https://images.unsplash.com/photo-1728299178576-3cf10b17132a?w=1200&q=80",
+      "https://images.unsplash.com/photo-1698440050363-1697e5f0277c?w=1200&q=80",
+    ],
     alt: "Desktop computer repair",
     items: [
       "Desktop PC Troubleshooting",
@@ -82,6 +98,11 @@ const SERVICES: ServiceDef[] = [
     name: "CCTV Services",
     defaultImg:
       "https://images.unsplash.com/photo-1589935447067-5531094415d1?w=700&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1589935447067-5531094415d1?w=1200&q=80",
+      "https://images.unsplash.com/photo-1650172452637-8a1c183f2524?w=1200&q=80",
+      "https://images.unsplash.com/photo-1692371051298-639282a01549?w=1200&q=80",
+    ],
     alt: "CCTV installation",
     items: [
       "CCTV Installation",
@@ -92,6 +113,30 @@ const SERVICES: ServiceDef[] = [
       "Cable Management",
       "System Upgrade & Repair",
       "CCTV Services & More",
+    ],
+  },
+  {
+    key: "webdev",
+    badge: "🌐 Web & Mobile",
+    emoji: "💻",
+    name: "Web & Mobile Development",
+    defaultImg:
+      "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=700&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=1200&q=80",
+      "https://images.unsplash.com/photo-1767449441925-737379bc2c4d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
+    ],
+    alt: "Web and mobile app development",
+    items: [
+      "Website Design & Development",
+      "Mobile App Development",
+      "E-Commerce Solutions",
+      "UI / UX Design",
+      "API Integration",
+      "Custom Software Solutions",
+      "Website Maintenance & Support",
+      "Hosting & Domain Setup",
     ],
   },
 ];
@@ -120,6 +165,8 @@ export default function Services() {
   const [overrides, setOverrides] = useState<
     Partial<Record<ServiceKey, string>>
   >({});
+  const [activeService, setActiveService] = useState<ServiceDef | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -138,6 +185,34 @@ export default function Services() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!activeService) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveService(null);
+      if (e.key === "ArrowRight") {
+        setActiveIndex((i) => (i + 1) % activeService.gallery.length);
+      }
+      if (e.key === "ArrowLeft") {
+        setActiveIndex(
+          (i) =>
+            (i - 1 + activeService.gallery.length) %
+            activeService.gallery.length,
+        );
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [activeService]);
+
+  function openGallery(svc: ServiceDef) {
+    setActiveService(svc);
+    setActiveIndex(0);
+  }
+
   return (
     <section id="services">
       <div className="services-inner">
@@ -147,23 +222,32 @@ export default function Services() {
             Our <span>Repair Services</span>
           </h2>
           <p className="sec-sub">
-            Four areas. One trusted technician. Your device is in good hands.
+            Five areas. One trusted partner. Your device — or your next
+            project — is in good hands.
           </p>
         </Reveal>
         <div className="services-grid">
           {SERVICES.map((svc, i) => (
             <Reveal className="svc-card" delay={i * 0.08} key={svc.key}>
-              <div className="svc-card-img">
+              <button
+                type="button"
+                className="svc-card-img"
+                onClick={() => openGallery(svc)}
+                aria-label={`View ${svc.name} photos`}
+              >
                 <Image
                   src={overrides[svc.key] || svc.defaultImg}
                   alt={svc.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="svc-card-img-overlay"></div>
                 <div className="svc-badge">{svc.badge}</div>
                 <div className="svc-icon-big">{svc.emoji}</div>
-              </div>
+                <span className="svc-card-img-zoom">
+                  🔍 View {svc.gallery.length} photos
+                </span>
+              </button>
               <div className="svc-body">
                 <div className="svc-name">{svc.name}</div>
                 <ul className="svc-list">
@@ -191,6 +275,85 @@ export default function Services() {
           ))}
         </div>
       </Reveal>
+
+      {activeService && (
+        <div
+          className="lightbox-backdrop"
+          onClick={() => setActiveService(null)}
+        >
+          <div
+            className="lightbox-box"
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeService.name}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="lightbox-close"
+              onClick={() => setActiveService(null)}
+              aria-label="Close"
+            >
+              ✕
+            </button>
+            <div className="lightbox-img">
+              <Image
+                src={activeService.gallery[activeIndex]}
+                alt={`${activeService.name} photo ${activeIndex + 1}`}
+                fill
+                sizes="(max-width: 640px) 90vw, 560px"
+                priority
+              />
+              {activeService.gallery.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="work-nav prev"
+                    aria-label="Previous photo"
+                    onClick={() =>
+                      setActiveIndex(
+                        (i) =>
+                          (i - 1 + activeService.gallery.length) %
+                          activeService.gallery.length,
+                      )
+                    }
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    className="work-nav next"
+                    aria-label="Next photo"
+                    onClick={() =>
+                      setActiveIndex(
+                        (i) => (i + 1) % activeService.gallery.length,
+                      )
+                    }
+                  >
+                    ›
+                  </button>
+                </>
+              )}
+            </div>
+            <div className="lightbox-info">
+              <div className="svc-name">{activeService.name}</div>
+              {activeService.gallery.length > 1 && (
+                <div className="lightbox-dots">
+                  {activeService.gallery.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`work-dot${i === activeIndex ? " active" : ""}`}
+                      aria-label={`Go to photo ${i + 1}`}
+                      onClick={() => setActiveIndex(i)}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

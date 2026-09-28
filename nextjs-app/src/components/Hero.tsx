@@ -6,11 +6,50 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Reveal from "./Reveal";
 
-const DEFAULT_HERO_IMG =
-  "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=560&q=80";
+interface Slide {
+  src: string;
+  label: string;
+  icon: string;
+}
+
+const SLIDES: Slide[] = [
+  {
+    src: "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?w=700&q=80",
+    label: "Cellphone Repair",
+    icon: "📱",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1544281679-a59fb2359715?w=700&q=80",
+    label: "Laptop Repair",
+    icon: "💻",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1591238372338-22d30c883a86?w=700&q=80",
+    label: "Computer Repair",
+    icon: "🖥️",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1589935447067-5531094415d1?w=700&q=80",
+    label: "CCTV Installation",
+    icon: "📷",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1767449441925-737379bc2c4d?w=700&q=80",
+    label: "Mobile App Development",
+    icon: "📲",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=700&q=80",
+    label: "Website & Software",
+    icon: "🌐",
+  },
+];
+
+const SLIDE_MS = 3500;
 
 export default function Hero() {
-  const [heroImg, setHeroImg] = useState(DEFAULT_HERO_IMG);
+  const [slides, setSlides] = useState<Slide[]>(SLIDES);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -19,9 +58,14 @@ export default function Hero() {
         const snap = await getDoc(doc(db, "site", "media"));
         if (!snap.exists() || cancelled) return;
         const data = snap.data();
-        if (data.hero) setHeroImg(data.hero);
+        if (data.hero) {
+          setSlides([
+            { src: data.hero, label: "DTech Solutions", icon: "🔧" },
+            ...SLIDES,
+          ]);
+        }
       } catch (err) {
-        console.warn("Site media: using default hero image", err);
+        console.warn("Site media: using default hero images", err);
       }
     })();
     return () => {
@@ -29,21 +73,26 @@ export default function Hero() {
     };
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((i) => (i + 1) % slides.length);
+    }, SLIDE_MS);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const current = slides[active];
+
   return (
     <section id="hero">
       <Reveal className="hero-left">
         <div className="hero-badge">
           <span className="hero-badge-dot"></span> Phone · Laptop · PC · CCTV
+          · Web
         </div>
         <h1 className="hero-h1">
           <span className="line-plain">Any Gadget Problem?</span>
           <span className="line-grad">Ipa-Fix mo na!</span>
         </h1>
-        <p className="hero-p">
-          Professional repair services for cellphones, laptops, desktop
-          computers, and CCTV systems in Calamba City, Laguna. Fast,
-          affordable, and handled by a trusted technician: Daniel De Torres.
-        </p>
         <div className="hero-actions">
           <a href="#services" className="btn-primary">
             🔧 View Services
@@ -52,32 +101,40 @@ export default function Hero() {
             Contact Us →
           </a>
         </div>
-        <div className="hero-stats">
-          <div className="h-stat">
-            <div className="h-stat-num">500+</div>
-            <div className="h-stat-label">Devices Fixed</div>
-          </div>
-          <div className="h-stat">
-            <div className="h-stat-num">6+</div>
-            <div className="h-stat-label">Years Experience</div>
-          </div>
-          <div className="h-stat">
-            <div className="h-stat-num">24H</div>
-            <div className="h-stat-label">Fast Turnaround</div>
-          </div>
-        </div>
       </Reveal>
       <Reveal className="hero-right" delay={0.2}>
         <div className="phone-mock-wrap">
           <div className="phone-glow"></div>
           <div className="phone-img-wrap">
-            <Image
-              src={heroImg}
-              alt="Cellphone repair"
-              fill
-              sizes="280px"
-              priority
-            />
+            {slides.map((slide, i) => (
+              <div
+                key={slide.src}
+                className={`hero-slide${i === active ? " active" : ""}`}
+                aria-hidden={i !== active}
+              >
+                <Image
+                  src={slide.src}
+                  alt={slide.label}
+                  fill
+                  sizes="280px"
+                  priority={i === 0}
+                />
+              </div>
+            ))}
+            <div className="hero-slide-label" key={current.label}>
+              <span>{current.icon}</span> {current.label}
+            </div>
+            <div className="hero-slide-dots">
+              {slides.map((slide, i) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  className={`hero-slide-dot${i === active ? " active" : ""}`}
+                  aria-label={`Show ${slide.label}`}
+                  onClick={() => setActive(i)}
+                />
+              ))}
+            </div>
           </div>
           <div className="chip chip-1">
             <div className="chip-icon">⭐</div>
