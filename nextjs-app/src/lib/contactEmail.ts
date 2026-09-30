@@ -56,7 +56,7 @@ export function renderContactEmail(data: ContactEmailData): string {
   </head>
   <body style="margin:0;padding:0;background-color:#eef2f7;font-family:Arial,Helvetica,sans-serif;">
     <span style="display:none;font-size:1px;color:#eef2f7;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">
-      New repair inquiry from ${name} about a ${device} — ${data.concern.slice(0, 100)}
+      New inquiry from ${name} about ${device} — ${data.concern.slice(0, 100)}
     </span>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#eef2f7;padding:32px 16px;">
       <tr>
@@ -110,7 +110,7 @@ export function renderContactEmail(data: ContactEmailData): string {
                         ${name}
                       </p>
                       <p style="margin:2px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#64748b;">
-                        wants help with a <strong style="color:#101825;">${device}</strong>
+                        wants help with: <strong style="color:#101825;">${device}</strong>
                       </p>
                     </td>
                   </tr>
@@ -124,7 +124,7 @@ export function renderContactEmail(data: ContactEmailData): string {
                   ${row("Email", `<a href="mailto:${email}" style="color:#1565c0;text-decoration:none;">${email}</a>`)}
                   ${row("Contact number", `<a href="tel:${phone}" style="color:#101825;text-decoration:none;">${phone}</a>`)}
                   ${facebook ? row("Facebook", `<a href="${facebookHrefEscaped}" style="color:#1565c0;text-decoration:none;">${facebook}</a>`) : ""}
-                  ${row("Device model / brand", device)}
+                  ${row("Service / device", device)}
                 </table>
                 <p style="margin:18px 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;color:#64748b;">
                   Concern
@@ -159,7 +159,7 @@ export function renderContactEmail(data: ContactEmailData): string {
                   DTech Solutions &middot; Daniel De Torres
                 </p>
                 <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748b;line-height:1.6;">
-                  Pansol, Calamba City, Laguna, Philippines &middot;
+                  Calamba City, Laguna, Philippines &middot;
                   <a href="tel:+639243672984" style="color:#64748b;">0924-367-2984</a>
                 </p>
                 <p style="margin:12px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#b3ada0;">

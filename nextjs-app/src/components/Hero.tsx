@@ -90,9 +90,15 @@ export default function Hero() {
           · Web
         </div>
         <h1 className="hero-h1">
-          <span className="line-plain">Any Gadget Problem?</span>
-          <span className="line-grad">Ipa-Fix mo na!</span>
+          <span className="line-plain">We Innovate,</span>
+          <span className="line-grad">Build and Support.</span>
         </h1>
+        <p className="hero-p">
+          DTech Solutions is an emerging technology venture focused on IT
+          services, digital solutions, software development, and technology
+          support, creating practical and reliable solutions for individuals
+          and businesses.
+        </p>
         <div className="hero-actions">
           <a href="#services" className="btn-primary">
             🔧 View Services

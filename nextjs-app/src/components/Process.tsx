@@ -5,7 +5,7 @@ const STEPS = [
     icon: "📞",
     num: 1,
     title: "Contact Us",
-    desc: "Message us on Facebook, Instagram, Threads, or TikTok — or call 0924-367-2984 and tell us your device and the problem.",
+    desc: "Message us on Facebook — or call 0924-367-2984 and tell us your device and the problem.",
   },
   {
     icon: "🔍",

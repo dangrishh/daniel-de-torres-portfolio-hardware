@@ -2,25 +2,47 @@
 
 import { useState } from "react";
 
-const BRAND_OPTIONS = [
-  "iPhone",
-  "Samsung",
-  "Xiaomi / Redmi",
-  "OPPO",
-  "vivo",
-  "realme",
-  "Infinix",
-  "HUAWEI",
-  "Acer",
-  "ASUS",
-  "Lenovo",
-  "HP",
-  "Dell",
-  "MacBook",
-  "Hikvision",
-  "Dahua",
-  "Other",
+const SERVICE_GROUPS = [
+  {
+    label: "📱 Cellphone",
+    options: [
+      "iPhone",
+      "Samsung",
+      "Xiaomi / Redmi",
+      "OPPO",
+      "vivo",
+      "realme",
+      "Infinix",
+      "HUAWEI",
+    ],
+  },
+  {
+    label: "💻 Laptop / PC",
+    options: [
+      "Acer",
+      "ASUS",
+      "Lenovo",
+      "HP",
+      "Dell",
+      "MacBook",
+      "Custom PC Build",
+    ],
+  },
+  { label: "📷 CCTV", options: ["Hikvision", "Dahua"] },
+  {
+    label: "🌐 Web & Mobile Development",
+    options: [
+      "Website Development",
+      "Mobile App Development",
+      "E-Commerce / Online Store",
+      "Custom Software / System",
+      "UI / UX Design",
+      "Website Maintenance / Hosting",
+    ],
+  },
 ];
+
+const DEV_OPTIONS = SERVICE_GROUPS[3].options;
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -43,8 +65,7 @@ export default function ContactForm() {
       name: (form.elements.namedItem("name") as HTMLInputElement).value,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
-      facebook: (form.elements.namedItem("facebook") as HTMLInputElement)
-        .value,
+      facebook: (form.elements.namedItem("facebook") as HTMLInputElement).value,
       device:
         selectedBrand === "Other" && otherBrand
           ? otherBrand.value
@@ -84,13 +105,7 @@ export default function ContactForm() {
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="cf-name">Name</label>
-          <input
-            id="cf-name"
-            name="name"
-            type="text"
-            required
-            maxLength={80}
-          />
+          <input id="cf-name" name="name" type="text" required maxLength={80} />
         </div>
         <div className="form-group">
           <label htmlFor="cf-phone">Contact Number</label>
@@ -127,9 +142,7 @@ export default function ContactForm() {
         </div>
       </div>
       <div className="form-group">
-        <label htmlFor="cf-device">
-          Model / Brand of Cellphone, CCTV, Laptop or PC
-        </label>
+        <label htmlFor="cf-device">What do you need help with?</label>
         <select
           id="cf-device"
           name="device"
@@ -138,25 +151,32 @@ export default function ContactForm() {
           onChange={(e) => setBrand(e.target.value)}
         >
           <option value="" disabled>
-            Select a brand
+            Select a device brand or service
           </option>
-          {BRAND_OPTIONS.map((b) => (
-            <option value={b} key={b}>
-              {b}
-            </option>
+          {SERVICE_GROUPS.map((group) => (
+            <optgroup label={group.label} key={group.label}>
+              {group.options.map((b) => (
+                <option value={b} key={b}>
+                  {b}
+                </option>
+              ))}
+            </optgroup>
           ))}
+          <option value="Other">Other</option>
         </select>
       </div>
       {brand === "Other" && (
         <div className="form-group">
-          <label htmlFor="cf-device-other">Please specify the brand</label>
+          <label htmlFor="cf-device-other">
+            Please specify the brand or service
+          </label>
           <input
             id="cf-device-other"
             name="deviceOther"
             type="text"
             required
             maxLength={120}
-            placeholder="e.g. TP-Link, Cherry Mobile, Wortmann..."
+            placeholder="e.g. Cherry Mobile, TP-Link, POS system..."
           />
         </div>
       )}
@@ -168,7 +188,11 @@ export default function ContactForm() {
           required
           maxLength={1000}
           rows={5}
-          placeholder="Tell us what's wrong with your device..."
+          placeholder={
+            DEV_OPTIONS.includes(brand)
+              ? "Tell us about your project — what it's for, key features, and your timeline..."
+              : "Tell us what's wrong with your device, or what you need..."
+          }
         />
       </div>
       <button
@@ -183,9 +207,7 @@ export default function ContactForm() {
           Thanks! Your message was sent — we&apos;ll get back to you shortly.
         </p>
       )}
-      {status === "error" && (
-        <p className="form-status error">{errorMsg}</p>
-      )}
+      {status === "error" && <p className="form-status error">{errorMsg}</p>}
     </form>
   );
 }

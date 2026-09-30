@@ -72,15 +72,15 @@ export default function WorkGallery() {
         <Reveal className="work-header">
           <div className="sec-label">Our Work</div>
           <h2 className="sec-title">
-            Recent <span>Repairs & Installs</span>
+            Recent <span>Projects</span>
           </h2>
         </Reveal>
         <Reveal className="work-dev">
           <div className="work-dev-icon">🚧</div>
           <div className="work-dev-title">Under Development</div>
           <p className="work-dev-sub">
-            We&apos;re putting together photos of devices we&apos;ve fixed and
-            CCTV systems we&apos;ve installed. Check back soon!
+            We&apos;re putting together our best repairs, CCTV installs, and
+            web &amp; app projects. Check back soon!
           </p>
         </Reveal>
       </section>
@@ -97,11 +97,10 @@ export default function WorkGallery() {
       <Reveal className="work-header">
         <div className="sec-label">Our Work</div>
         <h2 className="sec-title">
-          Recent <span>Repairs & Installs</span>
+          Recent <span>Projects</span>
         </h2>
         <p className="sec-sub">
-          A look at devices we&apos;ve fixed and CCTV systems we&apos;ve
-          installed.
+          A look at our repairs, CCTV installs, and web &amp; app projects.
         </p>
       </Reveal>
       <Reveal

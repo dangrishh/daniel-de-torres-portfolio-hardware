@@ -29,7 +29,7 @@ const FEATURES = [
   {
     icon: "📞",
     title: "7-Day Support",
-    desc: "We're available seven days a week. Reach us on Facebook, Instagram, Threads, TikTok, or Viber — we respond fast.",
+    desc: "We're available seven days a week. Reach us on Facebook, call, or Viber — we respond fast.",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function Features() {
           Our <span>Featured Benefits</span>
         </h2>
         <p className="sec-sub" style={{ margin: "10px auto 0", maxWidth: 480 }}>
-          Everything you need from a trusted gadget repair partner.
+          Everything you need from one trusted tech partner.
         </p>
       </Reveal>
       <div className="features-grid">

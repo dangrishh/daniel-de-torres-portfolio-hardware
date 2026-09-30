@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "Name, email, contact number, device, and concern are all required.",
+          "Name, email, contact number, service/device, and concern are all required.",
       },
       { status: 400 },
     );
