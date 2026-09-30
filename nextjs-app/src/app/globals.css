@@ -599,108 +599,137 @@ nav {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  padding-bottom: 80px;
+  gap: 22px;
+  align-items: start;
+  padding-bottom: 64px;
 }
 .svc-card {
+  display: flex;
+  flex-direction: column;
   background: var(--card);
-  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
-  transition: background 0.3s;
+  transition:
+    transform 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 .svc-card:hover {
-  background: #16233a;
+  transform: translateY(-4px);
+  border-color: var(--oborder);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 :root[data-theme="light"] .svc-card:hover {
-  background: #e6edf6;
+  box-shadow: 0 16px 40px rgba(13, 71, 161, 0.12);
 }
 .svc-card-img {
   position: relative;
   display: block;
   width: 100%;
-  height: 190px;
+  height: 200px;
   overflow: hidden;
   border: none;
   padding: 0;
   background: none;
   cursor: pointer;
   font: inherit;
-}
-.svc-card-img-zoom {
-  position: absolute;
-  inset: auto 0 0 0;
-  z-index: 1;
-  padding: 8px 0;
-  text-align: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.75));
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.svc-card-img:hover .svc-card-img-zoom {
-  opacity: 1;
+  text-align: left;
 }
 .svc-card-img img {
   object-fit: cover;
   transition: transform 0.6s ease;
-  filter: brightness(0.45);
+  filter: brightness(0.8);
 }
 .svc-card:hover .svc-card-img img {
-  transform: scale(1.07);
-  filter: brightness(0.6);
+  transform: scale(1.06);
+  filter: brightness(0.9);
 }
 .svc-card-img-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    transparent 30%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
+  background: linear-gradient(180deg, transparent 40%, rgba(3, 8, 18, 0.9) 100%);
 }
-.svc-badge {
+.svc-photos-pill {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  background: var(--grad);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 5px 12px;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  padding: 5px 11px;
   border-radius: 50px;
-  z-index: 1;
+  background: rgba(5, 11, 22, 0.75);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  transition: background 0.25s;
 }
-.svc-icon-big {
+.svc-card-img:hover .svc-photos-pill {
+  background: var(--orange);
+}
+.svc-img-title {
   position: absolute;
-  bottom: 16px;
-  right: 16px;
-  font-size: 2rem;
+  left: 18px;
+  right: 18px;
+  bottom: 14px;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+.svc-img-emoji {
+  font-size: 1.4rem;
 }
 .svc-body {
-  padding: 26px 22px 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 18px 20px 22px;
 }
 .svc-name {
   font-size: 1.12rem;
   font-weight: 800;
   letter-spacing: -0.3px;
-  margin-bottom: 18px;
+}
+.svc-tagline {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.45;
+}
+.svc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.svc-chip {
+  padding: 6px 12px;
+  border-radius: 50px;
+  background: rgba(41, 182, 246, 0.1);
+  border: 1px solid var(--oborder);
+  color: var(--white);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .svc-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
+  margin: 14px 0 0;
+  padding: 0;
+  animation: heroLabelIn 0.3s ease;
 }
 .svc-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
   font-size: 0.82rem;
   font-weight: 500;
   color: var(--gray);
@@ -708,28 +737,43 @@ nav {
 }
 .svc-check {
   color: var(--orange);
-  font-size: 0.7rem;
-  margin-top: 3px;
+  font-weight: 800;
   flex-shrink: 0;
 }
-.svc-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 24px;
-  padding: 10px 22px;
-  border-radius: 50px;
-  border: 1.5px solid var(--oborder);
-  color: var(--orange);
+.svc-more {
+  align-self: flex-start;
+  margin: 12px 0 18px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gray);
+  font: inherit;
   font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.svc-more:hover {
+  color: var(--orange);
+}
+.svc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  padding: 12px 22px;
+  border-radius: 50px;
+  background: var(--grad);
+  color: #fff;
+  font-size: 0.85rem;
   font-weight: 700;
   transition:
-    background 0.25s,
-    border-color 0.25s;
+    transform 0.2s,
+    box-shadow 0.25s;
 }
 .svc-btn:hover {
-  background: rgba(41, 182, 246, 0.1);
-  border-color: var(--orange);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(41, 182, 246, 0.35);
 }
 /* ──────────────────────────────
    BRANDS

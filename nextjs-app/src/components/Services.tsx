@@ -15,6 +15,8 @@ interface ServiceDef {
   defaultImg: string;
   gallery: string[];
   alt: string;
+  tagline: string;
+  highlights: string[];
   items: string[];
 }
 
@@ -32,6 +34,8 @@ const SERVICES: ServiceDef[] = [
       "https://images.unsplash.com/photo-1746005514011-ea00280f3b6e?w=1200&q=80",
     ],
     alt: "Cellphone repair",
+    tagline: "Basag na screen? Ayaw mag-charge? Ayos 'yan.",
+    highlights: ["📱 Screen", "🔋 Battery", "🔌 Charging", "🧩 Motherboard"],
     items: [
       "LCD / Screen Replacement",
       "Battery Replacement",
@@ -57,6 +61,13 @@ const SERVICES: ServiceDef[] = [
       "https://images.unsplash.com/photo-1705494833979-9377fbdee229?w=1200&q=80",
     ],
     alt: "Laptop repair",
+    tagline: "Mabagal, mainit, o ayaw mag-on? Kami na bahala.",
+    highlights: [
+      "⚡ Reformat",
+      "🚀 SSD / RAM",
+      "🧼 Cleaning",
+      "🧩 Motherboard",
+    ],
     items: [
       "Reformat & OS Reinstall",
       "Deep Cleaning & Repaste",
@@ -82,6 +93,13 @@ const SERVICES: ServiceDef[] = [
       "https://images.unsplash.com/photo-1698440050363-1697e5f0277c?w=1200&q=80",
     ],
     alt: "Desktop computer repair",
+    tagline: "No display, no boot, o bagong PC build.",
+    highlights: [
+      "🖥️ No Display",
+      "🛠️ PC Build",
+      "💾 Data Recovery",
+      "🧩 Motherboard",
+    ],
     items: [
       "Desktop PC Troubleshooting",
       "Custom PC Build & Assembly",
@@ -107,6 +125,13 @@ const SERVICES: ServiceDef[] = [
       "https://images.unsplash.com/photo-1692371051298-639282a01549?w=1200&q=80",
     ],
     alt: "CCTV installation",
+    tagline: "Bantayan ang bahay o tindahan kahit nasaan ka.",
+    highlights: [
+      "📷 Installation",
+      "📲 View on Phone",
+      "📼 DVR / NVR",
+      "🔧 Maintenance",
+    ],
     items: [
       "CCTV Installation",
       "CCTV Maintenance",
@@ -121,7 +146,7 @@ const SERVICES: ServiceDef[] = [
   {
     key: "webdev",
     badge: "🌐 Web & Mobile",
-    emoji: "💻",
+    emoji: "🌐",
     name: "Web & Mobile Development",
     defaultImg:
       "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=700&q=80",
@@ -131,6 +156,13 @@ const SERVICES: ServiceDef[] = [
       "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
     ],
     alt: "Web and mobile app development",
+    tagline: "Website o app para sa negosyo mo.",
+    highlights: [
+      "🌐 Website",
+      "📲 Mobile App",
+      "🛒 Online Store",
+      "🎨 UI / UX",
+    ],
     items: [
       "Website Design & Development",
       "Mobile App Development",
@@ -170,6 +202,7 @@ export default function Services() {
   >({});
   const [activeService, setActiveService] = useState<ServiceDef | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [expandedKey, setExpandedKey] = useState<ServiceKey | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -222,50 +255,73 @@ export default function Services() {
         <Reveal className="services-header">
           <div className="sec-label">What We Fix</div>
           <h2 className="sec-title">
-            Our <span>Repair Services</span>
+            Ano&apos;ng <span>ipapaayos mo?</span>
           </h2>
           <p className="sec-sub">
-            Five areas. One trusted partner. Your device — or your next
-            project — is in good hands.
+            Tap a photo to see our work. Message us — mabilis kami mag-reply.
           </p>
         </Reveal>
         <div className="services-grid">
-          {SERVICES.map((svc, i) => (
-            <Reveal className="svc-card" delay={i * 0.08} key={svc.key}>
-              <button
-                type="button"
-                className="svc-card-img"
-                onClick={() => openGallery(svc)}
-                aria-label={`View ${svc.name} photos`}
-              >
-                <Image
-                  src={overrides[svc.key] || svc.defaultImg}
-                  alt={svc.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="svc-card-img-overlay"></div>
-                <div className="svc-badge">{svc.badge}</div>
-                <div className="svc-icon-big">{svc.emoji}</div>
-                <span className="svc-card-img-zoom">
-                  🔍 View {svc.gallery.length} photos
-                </span>
-              </button>
-              <div className="svc-body">
-                <div className="svc-name">{svc.name}</div>
-                <ul className="svc-list">
-                  {svc.items.map((item) => (
-                    <li key={item}>
-                      <span className="svc-check">●</span> {item}
-                    </li>
-                  ))}
-                </ul>
-                <a href="#contact" className="svc-btn">
-                  Contact Us →
-                </a>
-              </div>
-            </Reveal>
-          ))}
+          {SERVICES.map((svc, i) => {
+            const expanded = expandedKey === svc.key;
+            return (
+              <Reveal className="svc-card" delay={i * 0.08} key={svc.key}>
+                <button
+                  type="button"
+                  className="svc-card-img"
+                  onClick={() => openGallery(svc)}
+                  aria-label={`View ${svc.name} photos`}
+                >
+                  <Image
+                    src={overrides[svc.key] || svc.defaultImg}
+                    alt={svc.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="svc-card-img-overlay"></div>
+                  <span className="svc-photos-pill">
+                    📷 {svc.gallery.length} Photos
+                  </span>
+                  <div className="svc-img-title">
+                    <span className="svc-img-emoji">{svc.emoji}</span>
+                    {svc.name}
+                  </div>
+                </button>
+                <div className="svc-body">
+                  <p className="svc-tagline">{svc.tagline}</p>
+                  <div className="svc-chips">
+                    {svc.highlights.map((h) => (
+                      <span className="svc-chip" key={h}>
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                  {expanded && (
+                    <ul className="svc-list">
+                      {svc.items.map((item) => (
+                        <li key={item}>
+                          <span className="svc-check">✓</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <button
+                    type="button"
+                    className="svc-more"
+                    aria-expanded={expanded}
+                    onClick={() => setExpandedKey(expanded ? null : svc.key)}
+                  >
+                    {expanded
+                      ? "Show less ▴"
+                      : `See all ${svc.items.length} services ▾`}
+                  </button>
+                  <a href="#contact" className="svc-btn">
+                    💬 Inquire Now
+                  </a>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
       <Reveal className="brands-wrap">
