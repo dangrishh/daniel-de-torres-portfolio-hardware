@@ -2018,3 +2018,21 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* "Under Development" nav badge + Our Work placeholder */
+.nav-badge{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:50px;background:var(--grad);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;vertical-align:middle;line-height:1.4;white-space:nowrap}
+.work-dev{max-width:520px;margin:28px auto 0;padding:36px 24px;text-align:center;background:var(--card);border:1px dashed var(--oborder);border-radius:20px}
+.work-dev-icon{font-size:2.4rem;margin-bottom:10px}
+.work-dev-title{font-size:1.2rem;font-weight:800;color:var(--white);margin-bottom:8px}
+.work-dev-sub{color:var(--gray);font-size:.9rem;line-height:1.6;margin:0}
+.nav-badge-short{display:none}
+@media (min-width: 769px) and (max-width: 1100px){
+  .nav-badge{margin-left:4px;padding:2px 6px}
+  .nav-badge-full{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .nav-badge-short{display:inline}
+}
+@media (min-width: 769px) and (max-width: 1100px){
+  .nav-links{gap:14px}
+  .nav-links a{white-space:nowrap}
+}
+.logo-text{white-space:nowrap}

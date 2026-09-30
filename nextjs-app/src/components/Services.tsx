@@ -41,6 +41,7 @@ const SERVICES: ServiceDef[] = [
       "Power / Volume Button",
       "Water Damage Cleaning",
       "Software & Firmware Flashing",
+      "Motherboard Repair (Any Issue)",
     ],
   },
   {
@@ -65,6 +66,7 @@ const SERVICES: ServiceDef[] = [
       "Malware / Virus Removal",
       "Activate Windows & MS Office",
       "Install Any Software",
+      "Motherboard Repair (Any Issue)",
     ],
   },
   {
@@ -89,6 +91,7 @@ const SERVICES: ServiceDef[] = [
       "Cleaning & Thermal Paste",
       "Printer & Peripheral Setup",
       "Data Backup & Recovery",
+      "Motherboard Repair (Any Issue)",
     ],
   },
   {

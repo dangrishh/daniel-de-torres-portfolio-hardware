@@ -66,7 +66,26 @@ export default function WorkGallery() {
     }, 5000);
   };
 
-  if (items.length === 0) return null;
+  if (items.length === 0) {
+    return (
+      <section id="work">
+        <Reveal className="work-header">
+          <div className="sec-label">Our Work</div>
+          <h2 className="sec-title">
+            Recent <span>Repairs & Installs</span>
+          </h2>
+        </Reveal>
+        <Reveal className="work-dev">
+          <div className="work-dev-icon">🚧</div>
+          <div className="work-dev-title">Under Development</div>
+          <p className="work-dev-sub">
+            We&apos;re putting together photos of devices we&apos;ve fixed and
+            CCTV systems we&apos;ve installed. Check back soon!
+          </p>
+        </Reveal>
+      </section>
+    );
+  }
 
   const goTo = (i: number) => {
     setIndex(i);

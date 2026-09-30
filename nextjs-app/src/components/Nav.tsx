@@ -3,12 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const LINKS = [
+const LINKS: { href: string; label: string; badge?: string }[] = [
   { href: "/#services", label: "Services" },
   { href: "/#features", label: "Why Us" },
   { href: "/#process", label: "Process" },
   { href: "/#testimonials", label: "Reviews" },
-  { href: "/#work", label: "Our Work" },
+  { href: "/#work", label: "Our Work", badge: "Under Development" },
   { href: "/supply", label: "CCTV Supply" },
 ];
 
@@ -42,6 +42,14 @@ export default function Nav() {
             <li key={link.href}>
               <Link href={link.href} onClick={() => setOpen(false)}>
                 {link.label}
+                {link.badge && (
+                  <span className="nav-badge" title={link.badge}>
+                    <span className="nav-badge-full">{link.badge}</span>
+                    <span className="nav-badge-short" aria-hidden="true">
+                      Soon
+                    </span>
+                  </span>
+                )}
               </Link>
             </li>
           ))}
