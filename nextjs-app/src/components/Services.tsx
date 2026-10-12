@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import type { ServiceKey } from "@/lib/types";
@@ -62,12 +62,7 @@ const SERVICES: ServiceDef[] = [
     ],
     alt: "Laptop repair",
     tagline: "Slow, overheating, or won't turn on? We've got you.",
-    highlights: [
-      "Reformat",
-      "SSD / RAM",
-      "Cleaning",
-      "Motherboard",
-    ],
+    highlights: ["Reformat", "SSD / RAM", "Cleaning", "Motherboard"],
     items: [
       "Reformat & OS Reinstall",
       "Deep Cleaning & Repaste",
@@ -94,12 +89,7 @@ const SERVICES: ServiceDef[] = [
     ],
     alt: "Desktop computer repair",
     tagline: "No display? Won't boot? Or ready for a dream build?",
-    highlights: [
-      "No Display",
-      "PC Build",
-      "Data Recovery",
-      "Motherboard",
-    ],
+    highlights: ["No Display", "PC Build", "Data Recovery", "Motherboard"],
     items: [
       "Desktop PC Troubleshooting",
       "Custom PC Build & Assembly",
@@ -126,12 +116,7 @@ const SERVICES: ServiceDef[] = [
     ],
     alt: "CCTV installation",
     tagline: "Watch your home or store from anywhere, 24/7.",
-    highlights: [
-      "Installation",
-      "View on Phone",
-      "DVR / NVR",
-      "Maintenance",
-    ],
+    highlights: ["Installation", "View on Phone", "DVR / NVR", "Maintenance"],
     items: [
       "CCTV Installation",
       "CCTV Maintenance",
@@ -157,12 +142,7 @@ const SERVICES: ServiceDef[] = [
     ],
     alt: "Web and mobile app development",
     tagline: "Take your business online with a website or app.",
-    highlights: [
-      "Website",
-      "Mobile App",
-      "Online Store",
-      "UI / UX",
-    ],
+    highlights: ["Website", "Mobile App", "Online Store", "UI / UX"],
     items: [
       "Website Design & Development",
       "Mobile App Development",
@@ -202,7 +182,16 @@ export default function Services() {
   >({});
   const [activeService, setActiveService] = useState<ServiceDef | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [expandedKey, setExpandedKey] = useState<ServiceKey | null>(null);
+  const [current, setCurrent] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const touchX = useRef<number | null>(null);
+  const total = SERVICES.length;
+  const currentSvc = SERVICES[current];
+
+  function goTo(i: number) {
+    setCurrent(((i % total) + total) % total);
+    setExpanded(false);
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -258,117 +247,197 @@ export default function Services() {
             How Can We <span>Help You Today?</span>
           </h2>
           <p className="sec-sub">
-            Tap a photo to see our work. Message us — we reply fast!
+            Swipe through our services — tap a card to see real photos.
           </p>
         </Reveal>
-        <div className="services-grid">
+      </div>
+      <Reveal
+        className="svc-flow-wrap"
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") goTo(current + 1);
+          if (e.key === "ArrowLeft") goTo(current - 1);
+        }}
+      >
+        <div
+          className="svc-flow"
+          onTouchStart={(e) => {
+            touchX.current = e.touches[0].clientX;
+          }}
+          onTouchEnd={(e) => {
+            if (touchX.current === null) return;
+            const dx = e.changedTouches[0].clientX - touchX.current;
+            touchX.current = null;
+            if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+          }}
+        >
+          <button
+            type="button"
+            className="svc-flow-nav prev"
+            aria-label="Previous service"
+            onClick={() => goTo(current - 1)}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
           {SERVICES.map((svc, i) => {
-            const expanded = expandedKey === svc.key;
+            let d = i - current;
+            if (d > total / 2) d -= total;
+            if (d < -total / 2) d += total;
+            const ad = Math.abs(d);
+            const pos =
+              ad === 0 ? "is-active" : ad === 1 ? "is-near" : "is-far";
             return (
-              <Reveal className="svc-card" delay={i * 0.08} key={svc.key}>
-                <button
-                  type="button"
-                  className="svc-card-img"
-                  onClick={() => openGallery(svc)}
-                  aria-label={`View ${svc.name} photos`}
-                >
-                  <Image
-                    src={overrides[svc.key] || svc.defaultImg}
-                    alt={svc.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="svc-card-img-overlay"></div>
-                  <span className="svc-photos-pill">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="3" y="3" width="18" height="18" rx="3" />
-                      <circle cx="9" cy="9" r="2" />
-                      <path d="m21 15-4.5-4.5L6 21" />
-                    </svg>
-                    {svc.gallery.length} Photos
-                  </span>
-                  <div className="svc-img-title">{svc.name}</div>
-                </button>
-                <div className="svc-body">
-                  <p className="svc-tagline">{svc.tagline}</p>
-                  <div className="svc-chips">
-                    {svc.highlights.map((h) => (
-                      <span className="svc-chip" key={h}>
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="M20 6 9 17l-5-5" />
-                        </svg>
-                        {h}
-                      </span>
-                    ))}
-                  </div>
-                  {expanded && (
-                    <ul className="svc-list">
-                      {svc.items.map((item) => (
-                        <li key={item}>
-                          <span className="svc-check" aria-hidden="true" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  <div className="svc-actions">
-                    <button
-                      type="button"
-                      className="svc-more"
-                      aria-expanded={expanded}
-                      onClick={() => setExpandedKey(expanded ? null : svc.key)}
-                    >
-                      {expanded ? "Show less" : `All ${svc.items.length} services`}
-                      <svg
-                        className={expanded ? "flip" : ""}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
-                    </button>
-                    <a href="#contact" className="svc-btn">
-                      Inquire
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M5 12h14M13 6l6 6-6 6" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </Reveal>
+              <button
+                key={svc.key}
+                type="button"
+                className={`svc-flow-card ${pos}`}
+                style={{ "--d": d, "--ad": ad } as CSSProperties}
+                tabIndex={ad > 1 ? -1 : 0}
+                aria-label={
+                  d === 0 ? `View ${svc.name} photos` : `Show ${svc.name}`
+                }
+                onClick={() => (d === 0 ? openGallery(svc) : goTo(i))}
+              >
+                <Image
+                  src={overrides[svc.key] || svc.defaultImg}
+                  alt={svc.alt}
+                  fill
+                  sizes="(max-width: 768px) 240px, 340px"
+                  priority={i === 0}
+                />
+                <span className="svc-flow-shade" />
+                <span className="svc-flow-photos">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="3" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="m21 15-4.5-4.5L6 21" />
+                  </svg>
+                  Tap for {svc.gallery.length} photos
+                </span>
+                <span className="svc-flow-text">
+                  <span className="svc-flow-name">{svc.name}</span>
+                  <span className="svc-flow-sub">{svc.tagline}</span>
+                </span>
+                <span className="svc-flow-dim" />
+                <span className="svc-flow-count">
+                  {i + 1} / {total}
+                </span>
+              </button>
             );
           })}
+          <button
+            type="button"
+            className="svc-flow-nav next"
+            aria-label="Next service"
+            onClick={() => goTo(current + 1)}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
         </div>
-      </div>
+
+        <div className="svc-flow-pills" key={currentSvc.key}>
+          {currentSvc.highlights.map((h) => (
+            <span className="svc-flow-pill" key={h}>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              {h}
+            </span>
+          ))}
+        </div>
+        <div className="svc-flow-actions">
+          <button
+            type="button"
+            className="svc-more"
+            aria-expanded={expanded}
+            onClick={() => setExpanded((v) => !v)}
+          >
+            {expanded ? "Show less" : `All ${currentSvc.items.length} services`}
+            <svg
+              className={expanded ? "flip" : ""}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+          <a href="#contact" className="svc-btn">
+            Inquire Now
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+        {expanded && (
+          <ul className="svc-flow-list">
+            {currentSvc.items.map((item) => (
+              <li key={item}>
+                <span className="svc-check" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="svc-flow-dots">
+          {SERVICES.map((svc, i) => (
+            <button
+              key={svc.key}
+              type="button"
+              className={`svc-flow-dot${i === current ? " active" : ""}`}
+              aria-label={`Show ${svc.name}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
+      </Reveal>
       <Reveal className="brands-wrap">
         <div className="brands-title">Brands We Service</div>
         <div className="brands-list">

@@ -9,8 +9,9 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const FAVICON =
-  "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%2329b6f6'/%3E%3Cstop%20offset='1'%20stop-color='%230d47a1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='40'%20height='40'%20rx='10'%20fill='url(%23g)'/%3E%3Cpath%20transform='translate(8,8)%20scale(0.9)'%20d='M22.7%2019l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9%206%206%209%201.6%204.7C.4%207.1.9%2010.1%202.9%2012.1c1.9%201.9%204.6%202.4%206.9%201.5l9.1%209.1c.4.4%201%20.4%201.4%200l2.3-2.3c.5-.4.5-1.1.1-1.4z'%20fill='%23ffffff'/%3E%3C/svg%3E";
+// Microchip (hardware) with </> inside (software) on the brand gradient.
+const FAVICON_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#29b6f6'/><stop offset='1' stop-color='#0d47a1'/></linearGradient></defs><rect width='40' height='40' rx='10' fill='url(#g)'/><g fill='none' stroke='#fff' stroke-linecap='round' stroke-linejoin='round'><rect x='10' y='10' width='20' height='20' rx='3.5' stroke-width='2.4'/><path d='M15 6v4M20 6v4M25 6v4M15 30v4M20 30v4M25 30v4M6 15h4M6 20h4M6 25h4M30 15h4M30 20h4M30 25h4' stroke-width='2.2'/><path d='M17 16.5 14.5 20l2.5 3.5M23 16.5l2.5 3.5-2.5 3.5M21 15.5l-2 9' stroke-width='1.9'/></g></svg>`;
+const FAVICON = `data:image/svg+xml,${encodeURIComponent(FAVICON_SVG)}`;
 
 export const metadata: Metadata = {
   title: "DTech Solutions — We Innovate, Build and Support.",
